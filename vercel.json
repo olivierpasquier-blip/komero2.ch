@@ -1,0 +1,51 @@
+{
+  "redirects": [
+    {
+      "source": "/:path*",
+      "has": [
+        {
+          "type": "host",
+          "value": "komero.ch"
+        }
+      ],
+      "destination": "https://www.komero.ch/:path*",
+      "statusCode": 301
+    },
+    {
+      "source": "/repondeur-sms-whatsapp",
+      "destination": "/repondeur-sms",
+      "statusCode": 301
+    },
+    {
+      "source": "/assistant-whatsapp-appel-manque",
+      "destination": "/repondeur-sms",
+      "statusCode": 301
+    },
+    {
+      "source": "/roue-de-la-fortune",
+      "destination": "/roue-de-la-chance",
+      "statusCode": 301
+    },
+    {
+      "source": "/roue-chance",
+      "destination": "/roue-de-la-chance",
+      "statusCode": 301
+    },
+    {
+      "source": "/commander",
+      "destination": "/tarifs",
+      "statusCode": 301
+    },
+    {
+      "source": "/offres",
+      "destination": "/tarifs",
+      "statusCode": 301
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
+    }
+  ]
+}

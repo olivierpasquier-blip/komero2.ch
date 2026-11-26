@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset
+  xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml"
+>
+  <url>
+    <loc>https://www.komero.ch/</loc>
+    <xhtml:link rel="alternate" hreflang="fr-CH" href="https://www.komero.ch/" />
+    <xhtml:link rel="alternate" hreflang="de-CH" href="https://www.komero.ch/?lang=de" />
+    <xhtml:link rel="alternate" hreflang="en-CH" href="https://www.komero.ch/?lang=en" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.komero.ch/" />
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://www.komero.ch/avis-google-ia</loc>
+    <xhtml:link rel="alternate" hreflang="fr-CH" href="https://www.komero.ch/avis-google-ia" />
+    <xhtml:link rel="alternate" hreflang="de-CH" href="https://www.komero.ch/avis-google-ia?lang=de" />
+    <xhtml:link rel="alternate" hreflang="en-CH" href="https://www.komero.ch/avis-google-ia?lang=en" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.komero.ch/avis-google-ia" />
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.komero.ch/reseaux-sociaux</loc>
+    <xhtml:link rel="alternate" hreflang="fr-CH" href="https://www.komero.ch/reseaux-sociaux" />
+    <xhtml:link rel="alternate" hreflang="de-CH" href="https://www.komero.ch/reseaux-sociaux?lang=de" />
+    <xhtml:link rel="alternate" hreflang="en-CH" href="https://www.komero.ch/reseaux-sociaux?lang=en" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.komero.ch/reseaux-sociaux" />
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.komero.ch/repondeur-sms</loc>
+    <xhtml:link rel="alternate" hreflang="fr-CH" href="https://www.komero.ch/repondeur-sms" />
+    <xhtml:link rel="alternate" hreflang="de-CH" href="https://www.komero.ch/repondeur-sms?lang=de" />
+    <xhtml:link rel="alternate" hreflang="en-CH" href="https://www.komero.ch/repondeur-sms?lang=en" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.komero.ch/repondeur-sms" />
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.komero.ch/campagnes-sms-flash</loc>
+    <xhtml:link rel="alternate" hreflang="fr-CH" href="https://www.komero.ch/campagnes-sms-flash" />
+    <xhtml:link rel="alternate" hreflang="de-CH" href="https://www.komero.ch/campagnes-sms-flash?lang=de" />
+    <xhtml:link rel="alternate" hreflang="en-CH" href="https://www.komero.ch/campagnes-sms-flash?lang=en" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.komero.ch/campagnes-sms-flash" />
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.komero.ch/veille-concurrence</loc>
+    <xhtml:link rel="alternate" hreflang="fr-CH" href="https://www.komero.ch/veille-concurrence" />
+    <xhtml:link rel="alternate" hreflang="de-CH" href="https://www.komero.ch/veille-concurrence?lang=de" />
+    <xhtml:link rel="alternate" hreflang="en-CH" href="https://www.komero.ch/veille-concurrence?lang=en" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.komero.ch/veille-concurrence" />
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.komero.ch/roue-de-la-chance</loc>
+    <xhtml:link rel="alternate" hreflang="fr-CH" href="https://www.komero.ch/roue-de-la-chance" />
+    <xhtml:link rel="alternate" hreflang="de-CH" href="https://www.komero.ch/roue-de-la-chance?lang=de" />
+    <xhtml:link rel="alternate" hreflang="en-CH" href="https://www.komero.ch/roue-de-la-chance?lang=en" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.komero.ch/roue-de-la-chance" />
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.komero.ch/tarifs</loc>
+    <xhtml:link rel="alternate" hreflang="fr-CH" href="https://www.komero.ch/tarifs" />
+    <xhtml:link rel="alternate" hreflang="de-CH" href="https://www.komero.ch/tarifs?lang=de" />
+    <xhtml:link rel="alternate" hreflang="en-CH" href="https://www.komero.ch/tarifs?lang=en" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.komero.ch/tarifs" />
+    <changefreq>weekly</changefreq>
+    <priority>0.95</priority>
+  </url>
+  <url>
+    <loc>https://www.komero.ch/contact</loc>
+    <xhtml:link rel="alternate" hreflang="fr-CH" href="https://www.komero.ch/contact" />
+    <xhtml:link rel="alternate" hreflang="de-CH" href="https://www.komero.ch/contact?lang=de" />
+    <xhtml:link rel="alternate" hreflang="en-CH" href="https://www.komero.ch/contact?lang=en" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.komero.ch/contact" />
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://www.komero.ch/informations-legales</loc>
+    <xhtml:link rel="alternate" hreflang="fr-CH" href="https://www.komero.ch/informations-legales" />
+    <xhtml:link rel="alternate" hreflang="de-CH" href="https://www.komero.ch/informations-legales?lang=de" />
+    <xhtml:link rel="alternate" hreflang="en-CH" href="https://www.komero.ch/informations-legales?lang=en" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.komero.ch/informations-legales" />
+    <changefreq>yearly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://www.komero.ch/mentions-legales</loc>
+    <xhtml:link rel="alternate" hreflang="fr-CH" href="https://www.komero.ch/mentions-legales" />
+    <xhtml:link rel="alternate" hreflang="de-CH" href="https://www.komero.ch/mentions-legales?lang=de" />
+    <xhtml:link rel="alternate" hreflang="en-CH" href="https://www.komero.ch/mentions-legales?lang=en" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.komero.ch/mentions-legales" />
+    <changefreq>yearly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://www.komero.ch/cgv</loc>
+    <xhtml:link rel="alternate" hreflang="fr-CH" href="https://www.komero.ch/cgv" />
+    <xhtml:link rel="alternate" hreflang="de-CH" href="https://www.komero.ch/cgv?lang=de" />
+    <xhtml:link rel="alternate" hreflang="en-CH" href="https://www.komero.ch/cgv?lang=en" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.komero.ch/cgv" />
+    <changefreq>yearly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://www.komero.ch/confidentialite</loc>
+    <xhtml:link rel="alternate" hreflang="fr-CH" href="https://www.komero.ch/confidentialite" />
+    <xhtml:link rel="alternate" hreflang="de-CH" href="https://www.komero.ch/confidentialite?lang=de" />
+    <xhtml:link rel="alternate" hreflang="en-CH" href="https://www.komero.ch/confidentialite?lang=en" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.komero.ch/confidentialite" />
+    <changefreq>yearly</changefreq>
+    <priority>0.4</priority>
+  </url>
+</urlset>

@@ -1,0 +1,8 @@
+{
+  "name": "Komero",
+  "description": "Plateforme IA tout-en-un sur PC et mobile PWA pour commerçants indépendants : avis Google, réseaux sociaux, répondeur SMS/WhatsApp sur appel manqué, promo flash SMS, veille locale et Starter Pack Roue de la Fortune offert.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
