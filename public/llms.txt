@@ -1,0 +1,26 @@
+# Komero Suisse
+
+> All-in-one platform on PC and mobile (PWA) helping local independent merchants and shopkeepers boost neighborhood visibility and retain customers in 2 minutes a day.
+
+## Offres et tarifs / Preise (CHF)
+- Essentiel / Basis / Essential : 19,90 CHF / mois (sans engagement, résiliable en 1 clic). Inclut : Avis Google IA, Réseaux Sociaux Express, accès PC & Mobile PWA, et Starter Pack Contacts & Avis Google offert.
+- Premium : 49,90 CHF / mois (sans engagement, résiliable en 1 clic). Inclut tout Essentiel + SMS automatique sur appel manqué, Campagnes Promo Flash SMS et Veille Concurrence & Tendances Locales.
+- Essai : 7 jours d'essai gratuit avant facturation (0 CHF débité pendant 7 jours, premier prélèvement au 8e jour sauf résiliation en 1 clic).
+
+## Pages principales
+- Accueil : https://www.komero.ch/
+- Tarifs : https://www.komero.ch/tarifs
+- Contact : https://www.komero.ch/contact
+- Avis Google IA : https://www.komero.ch/avis-google-ia
+- Réseaux Sociaux Express : https://www.komero.ch/reseaux-sociaux
+- Répondeur SMS/WhatsApp : https://www.komero.ch/repondeur-sms-whatsapp
+- Campagnes Promo Flash SMS : https://www.komero.ch/campagnes-sms-flash
+- Veille Concurrence : https://www.komero.ch/veille-concurrence
+
+## Informations légales et contact
+- Marque : Komero
+- Email : contact@komero.ch
+- Téléphone : +33 6 76 36 90 59
+- Mentions légales : https://www.komero.ch/mentions-legales
+- CGV : https://www.komero.ch/cgv
+- Confidentialité (nLPD / RGPD) : https://www.komero.ch/confidentialite
