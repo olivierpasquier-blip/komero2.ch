@@ -67,11 +67,34 @@ export interface SiteTranslations {
     heroBadge: string;
     h1: string;
     baseline: string;
+    heroHighlights: readonly [string, string, string];
     primaryCta: string;
     secondaryCta: string;
     sectorsLine: string;
     reassuranceAria: string;
     reassuranceItems: readonly string[];
+    leversKicker: string;
+    leversH2: string;
+    leversSubtitle: string;
+    leversPricingLink: string;
+    leversDiscoverPrefix: string;
+    levers: readonly {
+      id: string;
+      number: string;
+      icon: 'reviews' | 'gbp' | 'social' | 'missedCalls' | 'smsFlash' | 'marketWatch';
+      tierId: 'essentiel' | 'premium';
+      tierLabel: string;
+      title: string;
+      description: string;
+      proof: string;
+      path:
+        | '/gestion-fiche-google'
+        | '/avis-google-ia'
+        | '/reseaux-sociaux'
+        | '/repondeur-sms'
+        | '/campagnes-sms-flash'
+        | '/veille-concurrence';
+    }[];
     starterBadge: string;
     starterTitle: string;
     starterSubtitle: string;
@@ -85,6 +108,20 @@ export interface SiteTranslations {
     starterVisualWheelSub: string;
     starterVisualGoogleSub: string;
     starterVisualCaption: string;
+    fieldCasesKicker: string;
+    fieldCasesH2: string;
+    fieldCasesSubtitle: string;
+    fieldCasesBadge: string;
+    fieldCases: readonly {
+      id: string;
+      business: string;
+      city: string;
+      quote: string;
+      routine: string;
+      resultTag: string;
+    }[];
+    pilotPrompt: string;
+    pilotCta: string;
     featuresKicker: string;
     featuresH2: string;
     featuresPricingLink: string;
@@ -172,6 +209,13 @@ export interface SiteTranslations {
     stripeLockedNote: string;
     reassuranceStripe: string;
     vatNote: string;
+    comparisonKicker: string;
+    comparisonH2: string;
+    comparisonFeatureCol: string;
+    comparisonEssentielCol: string;
+    comparisonPremiumCol: string;
+    comparisonIncluded: string;
+    comparisonNotIncluded: string;
     faqKicker: string;
     faqH2: string;
     helpTitle: string;
@@ -214,6 +258,19 @@ export interface SiteTranslations {
       message: string;
       messagePlaceholder: string;
     };
+    step1Badge: string;
+    step2Badge: string;
+    step2ToggleExpand: string;
+    step2ToggleCollapse: string;
+    step2Title: string;
+    step2Subtitle: string;
+    step2SubmitIdle: string;
+    step2SubmitLoading: string;
+    step2SavedMessage: string;
+    step2SkipBtn: string;
+    step1DoneTitle: string;
+    step1DoneBody: string;
+    newRequestBtn: string;
     consentPrefix: string;
     consentPrivacyLink: string;
     consentSuffix: string;
@@ -309,27 +366,112 @@ export const TRANSLATIONS: Record<Language, SiteTranslations> = {
       copyrightSuffix: 'Tous droits réservés.',
     },
     home: {
-      heroBadge: 'Offert à votre inscription : Starter Pack Contacts & Avis Google',
-      h1: 'Plus visible dans votre quartier. Plus de clients en boutique.',
+      heroBadge: '✨ Assistant IA clé en main pour commerçants & artisans',
+      h1: 'Grimpez en tête sur Google dans votre quartier. Attirez plus de clients en boutique.',
       baseline:
-        'L’assistant IA qui gère vos avis Google, anime vos réseaux sociaux et fait revenir vos clients en 2 minutes par jour.',
+        "L'assistant IA clé en main qui pilote votre référencement local : avis Google, mise à jour de votre fiche Google, posts réseaux sociaux, SMS promos et appels manqués en 2 minutes par jour.",
+      heroHighlights: [
+        'Référencement Google Maps boosté',
+        'Clé en main en 10 min',
+        'Starter Pack Contacts & Avis offert',
+      ],
       primaryCta: 'Démarrer (7 jours gratuits)',
       secondaryCta: 'Demander une démo de 5 min',
       sectorsLine:
         'Boulangers · Coiffeurs · Restaurateurs · Cavistes · Boutiques · Artisans de quartier en Suisse',
       reassuranceAria: 'Engagements Komero Suisse',
       reassuranceItems: [
-        'Sans engagement',
-        'PC & Mobile inclus',
-        'Starter Pack Contacts offert',
+        'Sans engagement (19,90 ou 49,90 CHF/mois)',
+        '7 jours d’essai gratuit',
+        'PC & Mobile PWA inclus',
         'Conforme nLPD & RGPD',
+      ],
+      leversKicker: '6 leviers IA · Référencement local Google & fidélisation',
+      leversH2: '6 outils concrets pour remonter sur Google et remplir votre boutique',
+      leversSubtitle:
+        'Chaque action renforce votre fiche Google Maps et fait revenir vos clients du quartier, sans aucune compétence technique.',
+      leversPricingLink: 'Comparer les formules en CHF',
+      leversDiscoverPrefix: 'Découvrir',
+      levers: [
+        {
+          id: 'reviews',
+          number: '01',
+          icon: 'reviews',
+          tierId: 'essentiel',
+          tierLabel: 'Essentiel · 19,90 CHF',
+          title: 'Réponses aux Avis Google',
+          description:
+            'Répondez à 100 % de vos avis Google en 1 clic avec des mots-clés locaux et recevez une alerte SMS immédiate sur chaque avis critique.',
+          proof: 'Top 3 Google Maps & note 4,8★ préservée',
+          path: '/avis-google-ia',
+        },
+        {
+          id: 'gbp',
+          number: '02',
+          icon: 'gbp',
+          tierId: 'essentiel',
+          tierLabel: 'Essentiel · 19,90 CHF',
+          title: 'Gestion de votre Fiche Google',
+          description:
+            'Gardez votre fiche Google Business vivante : horaires exceptionnels, jours fériés, description optimisée par l’IA et actualités locales.',
+          proof: 'Signal fort pour l’algorithme Google Maps',
+          path: '/gestion-fiche-google',
+        },
+        {
+          id: 'social',
+          number: '03',
+          icon: 'social',
+          tierId: 'essentiel',
+          tierLabel: 'Essentiel · 19,90 CHF',
+          title: 'Réseaux Sociaux Express',
+          description:
+            'Prenez une photo au comptoir sur votre mobile : Komero rédige la légende, ajoute les hashtags du quartier et publie sur Instagram & Facebook.',
+          proof: 'Du cliché au post prêt en 15 secondes',
+          path: '/reseaux-sociaux',
+        },
+        {
+          id: 'missed-calls',
+          number: '04',
+          icon: 'missedCalls',
+          tierId: 'premium',
+          tierLabel: 'Premium · 49,90 CHF',
+          title: 'Appels Manqués rattrapés par SMS',
+          description:
+            'Un appel manqué en plein rush ? Votre client reçoit aussitôt un SMS chaleureux avec vos horaires ou un lien de réservation.',
+          proof: 'SMS envoyé automatiquement en 12 s',
+          path: '/repondeur-sms',
+        },
+        {
+          id: 'sms-flash',
+          number: '05',
+          icon: 'smsFlash',
+          tierId: 'premium',
+          tierLabel: 'Premium · 49,90 CHF',
+          title: 'Campagnes Promo Flash SMS',
+          description:
+            'Remplissez un après-midi calme ou écoulez vos invendus en envoyant un SMS court conforme STOP à votre fichier client fidèle.',
+          proof: '95 % de SMS lus en moins de 3 min',
+          path: '/campagnes-sms-flash',
+        },
+        {
+          id: 'market-watch',
+          number: '06',
+          icon: 'marketWatch',
+          tierId: 'premium',
+          tierLabel: 'Premium · 49,90 CHF',
+          title: 'Idées & Veille du Quartier',
+          description:
+            'Suivez la visibilité des commerces voisins et recevez chaque semaine des idées de posts prêtes calées sur la vie de votre quartier.',
+          proof: 'Rapport local & idées chaque semaine',
+          path: '/veille-concurrence',
+        },
       ],
       starterBadge: 'Offert à votre inscription',
       starterTitle: 'Starter Pack Contacts & Avis Google',
       starterSubtitle:
-        'Transformez chaque passage en caisse en nouveau contact client et en avis Google 5★.',
+        'Un chevalet QR code prêt à poser au comptoir pour récolter automatiquement des avis Google 5★ et bâtir votre fichier client SMS, sans aucun jargon technique.',
       starterBanner:
-        'Inclus gratuitement dans les formules Essentiel et Premium • 7 jours gratuits',
+        'Inclus gratuitement dans Essentiel (19,90 CHF/mois) et Premium (49,90 CHF/mois) • 7 jours gratuits',
       starterLinkWheel: 'Découvrir la Roue de la chance au comptoir',
       starterLinkPricing: 'Voir les formules en CHF',
       starterVisualAria:
@@ -340,23 +482,60 @@ export const TRANSLATIONS: Record<Language, SiteTranslations> = {
       starterVisualWheelSub: 'Tournez en 15 secondes',
       starterVisualGoogleSub: 'Avis client + contact enregistrés',
       starterVisualCaption: 'Prêt à poser sur votre comptoir dès le 1er jour',
-      featuresKicker: 'Les 5 fonctionnalités Komero · PC & Mobile',
-      featuresH2: '5 outils IA pour attirer, répondre et fidéliser dans votre quartier',
+      fieldCasesKicker: 'Retours terrain · Commerces indépendants en Suisse',
+      fieldCasesH2: 'Pensé avec et pour les commerçants de proximité',
+      fieldCasesSubtitle:
+        'Trois situations concrètes résolues en 2 minutes par jour chez des commerçants et artisans pilotes en Suisse.',
+      fieldCasesBadge: 'Cas terrain • Pilote Suisse',
+      fieldCases: [
+        {
+          id: 'bakery-ge',
+          business: 'Boulangerie-Pâtisserie',
+          city: 'Genève',
+          quote:
+            '« Zéro appel perdu pendant le rush de midi et +14 avis Google en 3 semaines grâce au chevalet comptoir. »',
+          routine: 'Répondeur SMS automatique + réponses IA aux avis en 2 min/jour',
+          resultTag: '0 appel perdu · +14 avis Google',
+        },
+        {
+          id: 'hair-ls',
+          business: 'Salon de Coiffure',
+          city: 'Lausanne',
+          quote:
+            '« Créneaux creux du mardi remplis en 20 minutes par SMS Flash et fiche Google toujours à jour les jours fériés. »',
+          routine: 'SMS Flash fichier client + synchro jours fériés Google Maps',
+          resultTag: 'Créneaux remplis en 20 min',
+        },
+        {
+          id: 'wine-zh',
+          business: 'Caviste & Épicerie fine',
+          city: 'Zurich',
+          quote:
+            '« Une photo de nouvel arrivage prise au téléphone = post Instagram, Facebook et actu Google publiés en 15 secondes. »',
+          routine: 'Post Express Mobile + publication multi-canaux en 1 clic',
+          resultTag: 'IG + FB + Google en 15 s',
+        },
+      ],
+      pilotPrompt:
+        'Vous souhaitez devenir commerçant pilote en Suisse et tester Komero avec un accompagnement personnalisé ?',
+      pilotCta: 'Devenir commerçant pilote',
+      featuresKicker: 'Les 6 leviers Komero · PC & Mobile PWA',
+      featuresH2: '6 outils IA pour attirer, répondre et fidéliser dans votre quartier',
       featuresPricingLink: 'Voir les tarifs en CHF',
       featureCardTierPrefix: 'Formule',
       featureCardDiscoverPrefix: 'Découvrir',
       bottomAria: 'Passer à l’action',
-      bottomKicker: 'Choisissez votre prochaine étape',
-      bottomH2: 'Lancez Komero en autonomie ou échangez 5 minutes avec nous',
-      buyTagline: '7 jours gratuits • Sans engagement • Starter Pack Contacts offert',
-      buyTitle: 'Prêt à lancer Komero dans votre commerce ?',
+      bottomKicker: 'Prêt à remonter en tête sur Google dans votre quartier ?',
+      bottomH2: 'Démarrez vos 7 jours gratuits ou réservez une démo de 5 min',
+      buyTagline: '7 jours gratuits • 19,90 ou 49,90 CHF/mois • Sans engagement',
+      buyTitle: 'Activer Komero en autonomie dès aujourd’hui',
       buyBody:
-        'Découvrez nos formules simples en CHF, profitez du Starter Pack Contacts & Avis Google offert et activez votre espace sous 24h.',
+        'Choisissez Essentiel (19,90 CHF/mois — Fiche Google, Avis IA & Réseaux Sociaux) ou Premium (49,90 CHF/mois — tout Essentiel + Audit & Google Posts, Appels manqués SMS, Promos Flash & Veille), avec Starter Pack offert et démarrage en 10 minutes.',
       buyCta: 'Démarrer (7 jours gratuits)',
-      demoTagline: 'Visio partout en Suisse · Sur place en Suisse romande',
+      demoTagline: 'Visio partout en Suisse · Diagnostic gratuit de votre fiche Google',
       demoTitle: 'Vous préférez une démo personnalisée de 5 min ?',
       demoBody:
-        'Recevez votre diagnostic visibilité locale gratuit et découvrez en 5 minutes comment Komero s’adapte à votre métier et à votre quartier.',
+        'Nous regardons ensemble votre fiche Google actuelle et vous montrons en 5 minutes comment Komero s’adapte à votre métier et à votre quartier.',
       demoCta: 'Demander une démo de 5 min',
     },
     featureTemplate: {
@@ -720,6 +899,13 @@ export const TRANSLATIONS: Record<Language, SiteTranslations> = {
       reassuranceStripe:
         'Empreinte bancaire sécurisée Stripe • 0 CHF débité pendant 7 jours • Premier prélèvement au 8e jour sauf résiliation en 1 clic • Sans engagement.',
       vatNote: 'Tarifs affichés en francs suisses (CHF) · Sans engagement · Résiliation en 1 clic.',
+      comparisonKicker: 'Comparatif détaillé',
+      comparisonH2: 'Essentiel vs Premium : comparez chaque outil inclus',
+      comparisonFeatureCol: 'Fonctionnalité incluse',
+      comparisonEssentielCol: 'Essentiel · 19,90 CHF',
+      comparisonPremiumCol: 'Premium · 49,90 CHF',
+      comparisonIncluded: 'Inclus',
+      comparisonNotIncluded: 'Non inclus',
       faqKicker: 'Questions fréquentes',
       faqH2: 'Essai 7 jours gratuits, facturation en CHF, résiliation et sécurité',
       helpTitle: 'Vous hésitez entre les deux formules ?',
@@ -741,11 +927,11 @@ export const TRANSLATIONS: Record<Language, SiteTranslations> = {
       fieldImageAlt:
         'Accompagnement personnalisé Komero au comptoir d’un commerce de proximité en Suisse',
       fieldCaption: 'Diagnostic gratuit de votre visibilité locale préparé avant notre appel.',
-      formTitle: 'Demander une démo ou votre diagnostic gratuit',
+      formTitle: 'Demandez votre démo de 5 min (3 champs suffisent)',
       formSubtitle:
-        'Remplissez ce formulaire en 45 secondes — un conseiller Komero vous rappelle sous 24h.',
+        'Laissez vos 3 coordonnées essentielles en 15 secondes — un conseiller Komero Suisse vous rappelle sur vos heures creuses.',
       successMessage:
-        'Merci ! Votre demande a bien été envoyée, nous vous recontactons sous 24h.',
+        'Parfait ! Votre demande de rappel est enregistrée, nous vous contactons sous 24h.',
       fallbackTitle:
         'Connexion temporairement interrompue — votre demande a été sauvegardée localement.',
       fallbackBody:
@@ -754,28 +940,44 @@ export const TRANSLATIONS: Record<Language, SiteTranslations> = {
       fallbackCallBtn: 'Appeler le',
       fallbackRetryBtn: 'Réessayer',
       labels: {
-        commerce: 'Nom du commerce / enseigne',
+        commerce: 'Nom de votre commerce / enseigne',
         commercePlaceholder: 'Ex. Boulangerie du Lac',
-        metier: 'Secteur d’activité',
+        metier: 'Secteur d’activité (optionnel)',
         metierPlaceholder: 'Sélectionnez votre secteur',
-        postal: 'NPA / Ville',
+        postal: 'NPA ou Ville',
         postalPlaceholder: 'Ex. 1204 Genève ou 1003 Lausanne',
-        nom: 'Prénom & Nom',
+        nom: 'Prénom & Nom (optionnel)',
         nomPlaceholder: 'Ex. Marc Rochat',
         tel: 'Téléphone portable',
         telPlaceholder: 'Ex. +41 79 123 45 67',
-        email: 'Email professionnel',
+        email: 'Email professionnel (optionnel)',
         emailPlaceholder: 'Ex. contact@moncommerce.ch',
-        sujet: 'Besoins / Formule souhaitée',
-        message: 'Précisions ou créneau souhaité (optionnel)',
+        sujet: 'Besoin prioritaire (optionnel)',
+        message: 'Créneau préféré ou lien fiche Google (optionnel)',
         messagePlaceholder:
           'Ex. Disponible entre 14h30 et 16h30, ou lien vers votre fiche Google.',
       },
+      step1Badge: 'Étape 1 / 2 · Rappel express (15 sec)',
+      step2Badge: 'Étape 2 / 2 · Détails optionnels',
+      step2ToggleExpand: 'Préciser mon secteur, email ou besoin (optionnel)',
+      step2ToggleCollapse: 'Masquer les détails optionnels',
+      step2Title: 'Un dernier détail pour préparer votre diagnostic gratuit ? (optionnel)',
+      step2Subtitle:
+        'Votre rappel est déjà confirmé. Ajoutez si vous le souhaitez votre secteur, email ou besoin prioritaire pour que votre démo de 5 min soit prête sur mesure.',
+      step2SubmitIdle: 'Enregistrer ces précisions',
+      step2SubmitLoading: 'Mise à jour...',
+      step2SavedMessage:
+        'Merci ! Vos précisions ont bien été ajoutées à votre demande de démo.',
+      step2SkipBtn: 'C’est bon pour moi, merci',
+      step1DoneTitle: 'Demande de rappel enregistrée !',
+      step1DoneBody:
+        'Un conseiller Komero Suisse vous rappelle très vite sur votre mobile pour votre démo personnalisée de 5 min.',
+      newRequestBtn: 'Envoyer une autre demande',
       consentPrefix:
         'J’accepte que Komero utilise ces informations pour me recontacter dans le cadre de ma demande, conformément à la nLPD (Suisse), au RGPD et à la ',
       consentPrivacyLink: 'Politique de confidentialité',
       consentSuffix: '.',
-      submitIdle: 'Envoyer ma demande',
+      submitIdle: 'Être rappelé pour ma démo de 5 min',
       submitLoading: 'Envoi en cours...',
       bottomReassurance:
         '100 % gratuit et sans engagement · Conforme nLPD & RGPD · Données jamais revendues',
@@ -885,26 +1087,112 @@ export const TRANSLATIONS: Record<Language, SiteTranslations> = {
       copyrightSuffix: 'Alle Rechte vorbehalten.',
     },
     home: {
-      heroBadge: 'Gratis bei Anmeldung: Starter Pack Kontakte & Google-Bewertungen',
-      h1: 'Sichtbarer in Ihrem Quartier. Mehr Kunden im Geschäft.',
+      heroBadge: '✨ Schlüsselfertiger KI-Assistent für Geschäfte & Handwerker',
+      h1: 'Ganz oben bei Google in Ihrem Quartier. Mehr Kunden in Ihrem Geschäft.',
       baseline:
-        'Der KI-Assistent, der Ihre Google-Bewertungen beantwortet, Social Media belebt und Kunden in 2 Minuten pro Tag zurückholt.',
+        'Der schlüsselfertige KI-Assistent für Ihre lokale Sichtbarkeit: Google-Bewertungen, Pflege Ihres Google-Unternehmensprofils, Social-Media-Posts, Promo-SMS und verpasste Anrufe in 2 Minuten pro Tag.',
+      heroHighlights: [
+        'Google Maps Ranking gestärkt',
+        'Startklar in 10 Min.',
+        'Starter Pack Kontakte & Bewertungen gratis',
+      ],
       primaryCta: 'Jetzt starten (7 Tage gratis)',
       secondaryCta: '5-Min.-Demo anfragen',
       sectorsLine:
         'Bäckereien · Coiffeursalons · Restaurants · Weinhandlungen · Boutiquen · Quartierläden in der Schweiz',
       reassuranceAria: 'Komero Schweiz Versprechen',
       reassuranceItems: [
-        'Ohne Vertragsbindung',
-        'PC & Smartphone inklusive',
-        'Starter Pack Kontakte gratis',
+        'Ohne Vertragsbindung (19,90 oder 49,90 CHF/Mt.)',
+        '7 Tage gratis testen',
+        'PC & Smartphone PWA inklusive',
         'revDSG- & DSGVO-konform',
+      ],
+      leversKicker: '6 KI-Hebel · Lokales Google-Ranking & Stammkunden',
+      leversH2: '6 konkrete Werkzeuge für mehr Google-Sichtbarkeit und Kundschaft im Laden',
+      leversSubtitle:
+        'Jeder Baustein stärkt Ihr Google-Profil und holt Nachbarn aus Ihrem Quartier zurück — ganz ohne Fachjargon.',
+      leversPricingLink: 'Pakete in CHF vergleichen',
+      leversDiscoverPrefix: 'Entdecken:',
+      levers: [
+        {
+          id: 'reviews',
+          number: '01',
+          icon: 'reviews',
+          tierId: 'essentiel',
+          tierLabel: 'Basis · 19,90 CHF',
+          title: 'Antworten auf Google-Bewertungen',
+          description:
+            'Beantworten Sie 100 % Ihrer Google-Bewertungen mit 1 Klick inklusive lokaler Suchbegriffe und sofortigem SMS-Alarm bei Kritik.',
+          proof: 'Top 3 auf Google Maps & 4,8★ sichern',
+          path: '/avis-google-ia',
+        },
+        {
+          id: 'gbp',
+          number: '02',
+          icon: 'gbp',
+          tierId: 'essentiel',
+          tierLabel: 'Basis · 19,90 CHF',
+          title: 'Pflege Ihres Google-Unternehmensprofils',
+          description:
+            'Halten Sie Ihr Google-Profil laufend aktuell: Sonderöffnungszeiten, Feiertage, KI-optimierte Beschreibung und Neuigkeiten im Quartier.',
+          proof: 'Starkes Signal für Google Maps',
+          path: '/gestion-fiche-google',
+        },
+        {
+          id: 'social',
+          number: '03',
+          icon: 'social',
+          tierId: 'essentiel',
+          tierLabel: 'Basis · 19,90 CHF',
+          title: 'Social Media Express',
+          description:
+            'Machen Sie ein Foto an der Theke: Komero schreibt den Text, ergänzt Quartier-Hashtags und postet auf Instagram & Facebook.',
+          proof: 'Vom Foto zum Post in 15 Sekunden',
+          path: '/reseaux-sociaux',
+        },
+        {
+          id: 'missed-calls',
+          number: '04',
+          icon: 'missedCalls',
+          tierId: 'premium',
+          tierLabel: 'Premium · 49,90 CHF',
+          title: 'Verpasste Anrufe per SMS auffangen',
+          description:
+            'Anruf im Ladenstress verpasst? Ihr Kunde erhält sofort eine herzliche SMS mit Öffnungszeiten oder Reservationsmöglichkeit.',
+          proof: 'Automatische SMS innert 12 Sek.',
+          path: '/repondeur-sms',
+        },
+        {
+          id: 'sms-flash',
+          number: '05',
+          icon: 'smsFlash',
+          tierId: 'premium',
+          tierLabel: 'Premium · 49,90 CHF',
+          title: 'Flash-SMS-Aktionen',
+          description:
+            'Füllen Sie ruhige Nachmittage oder bieten Sie Restbestände mit 1 Klick per STOP-konformer SMS an Ihre Stammkunden an.',
+          proof: '95 % gelesen innert 3 Minuten',
+          path: '/campagnes-sms-flash',
+        },
+        {
+          id: 'market-watch',
+          number: '06',
+          icon: 'marketWatch',
+          tierId: 'premium',
+          tierLabel: 'Premium · 49,90 CHF',
+          title: 'Ideen & Quartier-Beobachtung',
+          description:
+            'Behalten Sie die Sichtbarkeit umliegender Geschäfte im Blick und erhalten Sie jede Woche passende Post-Ideen für Ihr Quartier.',
+          proof: 'Wöchentlicher Quartier-Impuls',
+          path: '/veille-concurrence',
+        },
       ],
       starterBadge: 'Gratis bei Ihrer Anmeldung',
       starterTitle: 'Starter Pack Kontakte & Google-Bewertungen',
       starterSubtitle:
-        'Verwandeln Sie jeden Einkauf an der Kasse in einen neuen Kundenkontakt und eine 5★-Google-Bewertung.',
-      starterBanner: 'Gratis inklusive in den Paketen Basis und Premium • 7 Tage gratis testen',
+        'Ihr QR-Code-Aufsteller für die Ladentheke sammelt automatisch 5★-Google-Bewertungen und füllt Ihre SMS-Kundenliste — in 3 einfachen Schritten ohne Fachchinesisch.',
+      starterBanner:
+        'Gratis enthalten in Basis (19,90 CHF/Monat) & Premium (49,90 CHF/Monat) • 7 Tage gratis testen',
       starterLinkWheel: 'Das Glücksrad an der Theke entdecken',
       starterLinkPricing: 'Preise in CHF ansehen',
       starterVisualAria:
@@ -915,23 +1203,60 @@ export const TRANSLATIONS: Record<Language, SiteTranslations> = {
       starterVisualWheelSub: 'In 15 Sekunden drehen',
       starterVisualGoogleSub: 'Bewertung + Kontakt gespeichert',
       starterVisualCaption: 'Ab dem 1. Tag bereit für Ihre Ladentheke',
-      featuresKicker: 'Die 5 Komero-Funktionen · PC & Smartphone',
-      featuresH2: '5 KI-Tools für mehr Sichtbarkeit, Antworten und Stammkunden im Quartier',
+      fieldCasesKicker: 'Praxisfälle · Unabhängige Geschäfte in der Schweiz',
+      fieldCasesH2: 'Entwickelt mit und für lokale Geschäfte',
+      fieldCasesSubtitle:
+        'Drei konkrete Alltagssituationen, in 2 Minuten pro Tag gelöst bei Schweizer Pilot-Geschäften.',
+      fieldCasesBadge: 'Praxisfall • Pilot Schweiz',
+      fieldCases: [
+        {
+          id: 'bakery-ge',
+          business: 'Bäckerei & Konditorei',
+          city: 'Genf',
+          quote:
+            '« Kein verpasster Anruf im Mittagsstress und +14 Google-Bewertungen in 3 Wochen dank dem Theken-Aufsteller. »',
+          routine: 'Automatische SMS bei verpasstem Anruf + KI-Antworten in 2 Min./Tag',
+          resultTag: '0 verpasste Anrufe · +14 Bewertungen',
+        },
+        {
+          id: 'hair-ls',
+          business: 'Coiffeursalon',
+          city: 'Lausanne',
+          quote:
+            '« Ruhige Dienstagstermine innert 20 Minuten per Flash-SMS gefüllt und Google-Profil an Feiertagen immer aktuell. »',
+          routine: 'Flash-SMS an Stammkunden + Schweizer Feiertage auf Google Maps',
+          resultTag: 'Termine innert 20 Min. gefüllt',
+        },
+        {
+          id: 'wine-zh',
+          business: 'Weinhandlung & Feinkost',
+          city: 'Zürich',
+          quote:
+            '« Ein Handyfoto der neuen Lieferung = Instagram-, Facebook-Post und Google-Beitrag in 15 Sekunden veröffentlicht. »',
+          routine: 'Mobile Post Express + Veröffentlichung auf allen Kanälen mit 1 Klick',
+          resultTag: 'IG + FB + Google in 15 Sek.',
+        },
+      ],
+      pilotPrompt:
+        'Möchten Sie Pilot-Geschäft in der Schweiz werden und Komero mit persönlicher Begleitung testen?',
+      pilotCta: 'Pilot-Geschäft werden',
+      featuresKicker: 'Die 6 Komero-Hebel · PC & Smartphone PWA',
+      featuresH2: '6 KI-Tools für mehr Sichtbarkeit, Antworten und Stammkunden im Quartier',
       featuresPricingLink: 'Alle Preise in CHF ansehen',
       featureCardTierPrefix: 'Paket',
       featureCardDiscoverPrefix: 'Entdecken:',
       bottomAria: 'Nächster Schritt',
-      bottomKicker: 'Wählen Sie Ihren nächsten Schritt',
-      bottomH2: 'Starten Sie selbstständig oder vereinbaren Sie eine 5-Min.-Demo',
-      buyTagline: '7 Tage gratis • Ohne Vertragsbindung • Starter Pack Kontakte gratis',
-      buyTitle: 'Bereit, Komero in Ihrem Geschäft zu starten?',
+      bottomKicker: 'Bereit für Platz 1 bei Google in Ihrem Quartier?',
+      bottomH2: 'Starten Sie 7 Tage gratis oder buchen Sie Ihre 5-Min.-Demo',
+      buyTagline: '7 Tage gratis • 19,90 oder 49,90 CHF/Monat • Ohne Vertragsbindung',
+      buyTitle: 'Komero heute selbstständig starten',
       buyBody:
-        'Wählen Sie Ihr transparentes Paket in CHF, erhalten Sie das Starter Pack Kontakte & Google-Bewertungen gratis dazu und starten Sie innert 24 Stunden.',
+        'Wählen Sie Basis (19,90 CHF/Monat — Google-Profil, Bewertungen KI & Social Media) oder Premium (49,90 CHF/Monat — alles aus Basis + Audit & Google-Beiträge, Auto-SMS, SMS-Flash & Marktbeobachtung), inkl. gratis Starter Pack in 10 Minuten.',
       buyCta: 'Jetzt starten (7 Tage gratis)',
-      demoTagline: 'Video-Demo in der ganzen Schweiz · Vor Ort in der Westschweiz',
+      demoTagline: 'Video-Demo in der ganzen Schweiz · Kostenloser Google-Profil-Check',
       demoTitle: 'Lieber zuerst eine persönliche 5-Min.-Demo?',
       demoBody:
-        'Erhalten Sie eine kostenlose Auswertung Ihrer lokalen Sichtbarkeit und sehen Sie in 5 Minuten, wie Komero zu Ihrem Geschäft und Quartier passt.',
+        'Wir schauen gemeinsam Ihr aktuelles Google-Profil an und zeigen Ihnen in 5 Minuten, wie Komero zu Ihrem Geschäft und Quartier passt.',
       demoCta: '5-Min.-Demo anfragen',
     },
     featureTemplate: {
@@ -1294,6 +1619,13 @@ export const TRANSLATIONS: Record<Language, SiteTranslations> = {
       reassuranceStripe:
         'Sichere Kartenhinterlegung via Stripe • 0 CHF Belastung während 7 Tagen • Erste Abbuchung am 8. Tag, sofern nicht mit 1 Klick gekündigt • Ohne Vertragsbindung.',
       vatNote: 'Alle Preise in Schweizer Franken (CHF) · Ohne Vertragsbindung · Mit 1 Klick kündbar.',
+      comparisonKicker: 'Detailvergleich',
+      comparisonH2: 'Basis vs. Premium: alle enthaltenen Tools im Überblick',
+      comparisonFeatureCol: 'Enthaltene Funktion',
+      comparisonEssentielCol: 'Basis · 19,90 CHF',
+      comparisonPremiumCol: 'Premium · 49,90 CHF',
+      comparisonIncluded: 'Enthalten',
+      comparisonNotIncluded: 'Nicht enthalten',
       faqKicker: 'Häufige Fragen',
       faqH2: '7 Tage gratis testen, Abrechnung in CHF, Kündigung & Sicherheit',
       helpTitle: 'Unsicher, welches Paket am besten passt?',
@@ -1314,11 +1646,11 @@ export const TRANSLATIONS: Record<Language, SiteTranslations> = {
       hoursText: 'Termine flexibel zu Ihren ruhigen Zeiten, Montag bis Samstag.',
       fieldImageAlt: 'Persönliche Komero-Beratung direkt an der Theke eines Schweizer Fachgeschäfts',
       fieldCaption: 'Kostenlose Auswertung Ihrer lokalen Sichtbarkeit vor unserem Gespräch.',
-      formTitle: '5-Min.-Demo oder kostenlose Sichtbarkeits-Analyse anfragen',
+      formTitle: '5-Min.-Demo anfragen (3 Angaben genügen)',
       formSubtitle:
-        'In 45 Sekunden ausgefüllt — ein Komero-Berater meldet sich innert 24 Stunden bei Ihnen.',
+        'In 15 Sekunden ausgefüllt — ein Komero-Berater in der Schweiz ruft Sie zu Ihren ruhigen Zeiten zurück.',
       successMessage:
-        'Herzlichen Dank! Ihre Anfrage wurde gesendet, wir melden uns innert 24 Stunden bei Ihnen.',
+        'Perfekt! Ihr Rückrufwunsch ist gespeichert, wir melden uns innert 24 Stunden bei Ihnen.',
       fallbackTitle:
         'Verbindung kurz unterbrochen — Ihre Anfrage wurde lokal zwischengespeichert.',
       fallbackBody:
@@ -1327,28 +1659,44 @@ export const TRANSLATIONS: Record<Language, SiteTranslations> = {
       fallbackCallBtn: 'Anrufen:',
       fallbackRetryBtn: 'Erneut versuchen',
       labels: {
-        commerce: 'Name des Geschäfts / Betriebs',
+        commerce: 'Name Ihres Geschäfts',
         commercePlaceholder: 'Z. B. Bäckerei Sonnenschein',
-        metier: 'Branche',
+        metier: 'Branche (optional)',
         metierPlaceholder: 'Branche auswählen',
-        postal: 'PLZ / Ort',
+        postal: 'PLZ oder Ort',
         postalPlaceholder: 'Z. B. 8001 Zürich oder 4051 Basel',
-        nom: 'Vor- & Nachname',
+        nom: 'Vor- & Nachname (optional)',
         nomPlaceholder: 'Z. B. Lukas Meier',
-        tel: 'Mobilnummer',
+        tel: 'Mobiltelefon',
         telPlaceholder: 'Z. B. +41 79 123 45 67',
-        email: 'Geschäftliche E-Mail',
+        email: 'Geschäftliche E-Mail (optional)',
         emailPlaceholder: 'Z. B. kontakt@meingeschaeft.ch',
-        sujet: 'Anliegen / Gewünschtes Paket',
-        message: 'Hinweise oder Wunschzeit (optional)',
+        sujet: 'Wichtigstes Ziel (optional)',
+        message: 'Wunschzeit oder Link zum Google-Profil (optional)',
         messagePlaceholder:
           'Z. B. Gut erreichbar zwischen 14:30 und 16:30 Uhr, oder Link zu Ihrem Google-Profil.',
       },
+      step1Badge: 'Schritt 1 / 2 · Express-Rückruf (15 Sek.)',
+      step2Badge: 'Schritt 2 / 2 · Optionale Angaben',
+      step2ToggleExpand: 'Branche, E-Mail oder Ziel ergänzen (optional)',
+      step2ToggleCollapse: 'Optionale Angaben ausblenden',
+      step2Title: 'Noch ein kurzes Detail für Ihre kostenlose Analyse? (optional)',
+      step2Subtitle:
+        'Ihr Rückruf ist bereits bestätigt. Ergänzen Sie bei Bedarf Branche, E-Mail oder Ihr Hauptziel, damit wir Ihre 5-Min.-Demo gezielt vorbereiten.',
+      step2SubmitIdle: 'Angaben ergänzen',
+      step2SubmitLoading: 'Wird gespeichert...',
+      step2SavedMessage:
+        'Herzlichen Dank! Ihre Zusatzangaben wurden Ihrer Demo-Anfrage hinzugefügt.',
+      step2SkipBtn: 'Fertig, danke',
+      step1DoneTitle: 'Rückruf-Anfrage bestätigt!',
+      step1DoneBody:
+        'Ein Komero-Berater meldet sich innert 24 Stunden telefonisch für Ihre persönliche 5-Min.-Demo.',
+      newRequestBtn: 'Weitere Anfrage senden',
       consentPrefix:
         'Ich bin einverstanden, dass Komero diese Angaben zur Bearbeitung meiner Anfrage gemäss revDSG (Schweiz), DSGVO und der ',
       consentPrivacyLink: 'Datenschutzerklärung',
       consentSuffix: ' verwendet.',
-      submitIdle: 'Anfrage absenden',
+      submitIdle: 'Rückruf für 5-Min.-Demo anfordern',
       submitLoading: 'Wird gesendet...',
       bottomReassurance:
         '100 % kostenlos & unverbindlich · revDSG- & DSGVO-konform · Keine Weitergabe an Dritte',
@@ -1458,26 +1806,112 @@ export const TRANSLATIONS: Record<Language, SiteTranslations> = {
       copyrightSuffix: 'All rights reserved.',
     },
     home: {
-      heroBadge: 'Free when you sign up: Contacts & Google Reviews Starter Pack',
-      h1: 'More visible in your neighborhood. More customers in your shop.',
+      heroBadge: '✨ Turnkey AI Assistant for Local Shops & Artisans',
+      h1: 'Rank #1 on Google in your neighborhood. Bring more customers into your shop.',
       baseline:
-        'The AI assistant that replies to your Google reviews, runs your social media, and brings customers back in 2 minutes a day.',
+        'The turnkey AI assistant that powers your local visibility: Google reviews, Google Business profile updates, social media posts, promo SMS, and missed calls in 2 minutes a day.',
+      heroHighlights: [
+        'Boosted Google Maps ranking',
+        'Ready in 10 min',
+        'Free Contacts & Reviews Starter Pack',
+      ],
       primaryCta: 'Start now (7 days free)',
       secondaryCta: 'Request a 5-min demo',
       sectorsLine:
         'Bakeries · Hair Salons · Restaurants · Wine Shops · Boutiques · Local Artisans in Switzerland',
       reassuranceAria: 'Komero Switzerland commitments',
       reassuranceItems: [
-        'No commitment',
-        'Desktop & Mobile included',
-        'Contacts Starter Pack included',
+        'No commitment (19.90 or 49.90 CHF/mo)',
+        '7-day free trial',
+        'Desktop & Mobile PWA included',
         'Swiss FADP & GDPR compliant',
+      ],
+      leversKicker: '6 AI levers · Local Google SEO & customer retention',
+      leversH2: '6 practical tools to climb on Google and bring shoppers back',
+      leversSubtitle:
+        'Every tool boosts your Google Maps profile and drives repeat neighborhood visits — zero technical jargon required.',
+      leversPricingLink: 'Compare CHF plans',
+      leversDiscoverPrefix: 'Explore',
+      levers: [
+        {
+          id: 'reviews',
+          number: '01',
+          icon: 'reviews',
+          tierId: 'essentiel',
+          tierLabel: 'Essential · 19.90 CHF',
+          title: 'AI Google Review Replies',
+          description:
+            'Reply to 100% of your Google reviews in 1 click with local keywords and get instant SMS alerts on low-star feedback.',
+          proof: 'Top 3 Google Maps & 4.8★ protected',
+          path: '/avis-google-ia',
+        },
+        {
+          id: 'gbp',
+          number: '02',
+          icon: 'gbp',
+          tierId: 'essentiel',
+          tierLabel: 'Essential · 19.90 CHF',
+          title: 'Google Business Profile Management',
+          description:
+            'Keep your Google listing fresh year-round: special opening hours, public holidays, AI-optimized shop description, and local updates.',
+          proof: 'Strong freshness signal for Google Maps',
+          path: '/gestion-fiche-google',
+        },
+        {
+          id: 'social',
+          number: '03',
+          icon: 'social',
+          tierId: 'essentiel',
+          tierLabel: 'Essential · 19.90 CHF',
+          title: 'Express Social Media',
+          description:
+            'Snap a quick photo at your counter: Komero writes the caption, adds neighborhood hashtags, and publishes to Instagram & Facebook.',
+          proof: 'From photo to live post in 15 seconds',
+          path: '/reseaux-sociaux',
+        },
+        {
+          id: 'missed-calls',
+          number: '04',
+          icon: 'missedCalls',
+          tierId: 'premium',
+          tierLabel: 'Premium · 49.90 CHF',
+          title: 'Missed Calls Caught by SMS',
+          description:
+            'Missed a phone call during the rush? Your caller immediately receives a warm SMS with your hours or booking info.',
+          proof: 'Auto SMS sent within 12 seconds',
+          path: '/repondeur-sms',
+        },
+        {
+          id: 'sms-flash',
+          number: '05',
+          icon: 'smsFlash',
+          tierId: 'premium',
+          tierLabel: 'Premium · 49.90 CHF',
+          title: 'Flash SMS Promo Campaigns',
+          description:
+            'Fill a quiet weekday or clear end-of-day stock by sending a short STOP-compliant text to your loyal local customer list.',
+          proof: '95% read in under 3 minutes',
+          path: '/campagnes-sms-flash',
+        },
+        {
+          id: 'market-watch',
+          number: '06',
+          icon: 'marketWatch',
+          tierId: 'premium',
+          tierLabel: 'Premium · 49.90 CHF',
+          title: 'Neighborhood Watch & Ideas',
+          description:
+            'Monitor nearby shops and receive ready-to-publish weekly post ideas tailored to your street and seasonal calendar.',
+          proof: 'Weekly local briefing & post ideas',
+          path: '/veille-concurrence',
+        },
       ],
       starterBadge: 'Free when you sign up',
       starterTitle: 'Contacts & Google Reviews Starter Pack',
       starterSubtitle:
-        'Turn every checkout visit into a new customer contact and a 5★ Google review.',
-      starterBanner: 'Included free in Essential and Premium plans • 7-day free trial',
+        'A ready-to-place countertop QR stand that turns checkout visits into 5★ Google reviews and an automatic SMS customer list — in 3 jargon-free steps.',
+      starterBanner:
+        'Included free in Essential (19.90 CHF/mo) and Premium (49.90 CHF/mo) • 7-day free trial',
       starterLinkWheel: 'Discover the countertop Lucky Wheel',
       starterLinkPricing: 'View CHF plans',
       starterVisualAria:
@@ -1488,23 +1922,60 @@ export const TRANSLATIONS: Record<Language, SiteTranslations> = {
       starterVisualWheelSub: 'Spin in 15 seconds',
       starterVisualGoogleSub: 'Review + contact saved',
       starterVisualCaption: 'Ready for your shop counter from day one',
-      featuresKicker: 'The 5 Komero features · Desktop & Mobile',
-      featuresH2: '5 AI tools to attract, reply, and retain customers in your neighborhood',
+      fieldCasesKicker: 'Field results · Independent shops across Switzerland',
+      fieldCasesH2: 'Built with and for local shopkeepers',
+      fieldCasesSubtitle:
+        'Three real neighborhood workflows solved in 2 minutes a day with Swiss pilot merchants.',
+      fieldCasesBadge: 'Field case • Switzerland Pilot',
+      fieldCases: [
+        {
+          id: 'bakery-ge',
+          business: 'Artisan Bakery',
+          city: 'Geneva',
+          quote:
+            '“Zero missed calls during the lunch rush and +14 Google reviews in 3 weeks thanks to the countertop QR stand.”',
+          routine: 'Automatic missed-call SMS + AI review replies in 2 min/day',
+          resultTag: '0 missed calls · +14 Google reviews',
+        },
+        {
+          id: 'hair-ls',
+          business: 'Hair Salon',
+          city: 'Lausanne',
+          quote:
+            '“Quiet Tuesday openings filled in 20 minutes via Flash SMS and our Google listing always accurate on public holidays.”',
+          routine: 'Customer list Flash SMS + Swiss holiday Google Maps sync',
+          resultTag: 'Slots filled in 20 min',
+        },
+        {
+          id: 'wine-zh',
+          business: 'Wine Shop & Deli',
+          city: 'Zurich',
+          quote:
+            '“One phone photo of a new arrival = Instagram, Facebook, and Google Business update published in 15 seconds.”',
+          routine: 'Mobile Express Post + 1-click multi-channel publishing',
+          resultTag: 'IG + FB + Google in 15 sec',
+        },
+      ],
+      pilotPrompt:
+        'Want to become a Swiss pilot shopkeeper and test Komero with personal onboarding?',
+      pilotCta: 'Join as a pilot shop',
+      featuresKicker: 'The 6 Komero levers · Desktop & Mobile PWA',
+      featuresH2: '6 AI tools to attract, reply, and retain customers in your neighborhood',
       featuresPricingLink: 'View CHF pricing',
       featureCardTierPrefix: 'Plan',
       featureCardDiscoverPrefix: 'Explore',
       bottomAria: 'Take action',
-      bottomKicker: 'Choose your next step',
-      bottomH2: 'Start Komero right away or talk with us for 5 minutes',
-      buyTagline: '7 days free • No commitment • Contacts Starter Pack included',
-      buyTitle: 'Ready to launch Komero in your shop?',
+      bottomKicker: 'Ready to rank #1 on Google in your neighborhood?',
+      bottomH2: 'Start your 7-day free trial or book a 5-minute demo',
+      buyTagline: '7 days free • 19.90 or 49.90 CHF/month • No commitment',
+      buyTitle: 'Launch Komero in your shop today',
       buyBody:
-        'Explore our transparent CHF plans, get the Contacts & Google Reviews Starter Pack free, and activate your space within 24 hours.',
+        'Pick Essential (19.90 CHF/month — Google Profile, AI Reviews & Social Media) or Premium (49.90 CHF/month — everything in Essential + Audit & Google Posts, Missed-Call SMS, Flash SMS & Market Watch), with your free Starter Pack live in 10 minutes.',
       buyCta: 'Start now (7 days free)',
-      demoTagline: 'Video demo across Switzerland · In-person in Western Switzerland',
+      demoTagline: 'Video demo across Switzerland · Free Google profile check',
       demoTitle: 'Prefer a quick 5-minute live demo first?',
       demoBody:
-        'Get a free local visibility check and see in 5 minutes how Komero fits your shop and neighborhood.',
+        'We review your current Google listing together and show you in 5 minutes how Komero fits your shop and neighborhood.',
       demoCta: 'Request a 5-min demo',
     },
     featureTemplate: {
@@ -1865,6 +2336,13 @@ export const TRANSLATIONS: Record<Language, SiteTranslations> = {
       reassuranceStripe:
         'Secure Stripe card verification • CHF 0 charged for 7 days • First charge on day 8 unless canceled in 1 click • No commitment.',
       vatNote: 'All prices in Swiss Francs (CHF) · No commitment · 1-click cancellation.',
+      comparisonKicker: 'Side-by-side comparison',
+      comparisonH2: 'Essential vs. Premium: compare every included tool',
+      comparisonFeatureCol: 'Included feature',
+      comparisonEssentielCol: 'Essential · 19.90 CHF',
+      comparisonPremiumCol: 'Premium · 49.90 CHF',
+      comparisonIncluded: 'Included',
+      comparisonNotIncluded: 'Not included',
       faqKicker: 'Frequently asked questions',
       faqH2: '7-day free trial, CHF billing, cancellation & security',
       helpTitle: 'Not sure which plan fits your shop best?',
@@ -1885,11 +2363,11 @@ export const TRANSLATIONS: Record<Language, SiteTranslations> = {
       hoursText: 'Flexible slots during your quiet hours, Monday to Saturday.',
       fieldImageAlt: 'Personalized Komero onboarding at a local Swiss shop counter',
       fieldCaption: 'Free local visibility check prepared before our call.',
-      formTitle: 'Request a 5-min demo or free visibility check',
+      formTitle: 'Book your 5-min demo (3 fields only)',
       formSubtitle:
-        'Takes 45 seconds—a Komero advisor will get back to you within 24 hours.',
+        'Takes 15 seconds on mobile—a Komero Switzerland advisor calls you back during your quiet hours.',
       successMessage:
-        'Thank you! Your request has been sent, we will get back to you within 24 hours.',
+        'All set! Your callback request is confirmed, we will call you back within 24 hours.',
       fallbackTitle:
         'Connection briefly interrupted — your request was safely saved locally.',
       fallbackBody:
@@ -1898,28 +2376,44 @@ export const TRANSLATIONS: Record<Language, SiteTranslations> = {
       fallbackCallBtn: 'Call',
       fallbackRetryBtn: 'Try again',
       labels: {
-        commerce: 'Shop / business name',
+        commerce: 'Shop / Business name',
         commercePlaceholder: 'e.g. Lakeview Bakery',
-        metier: 'Business sector',
+        metier: 'Business sector (optional)',
         metierPlaceholder: 'Select your sector',
-        postal: 'Postal Code / City',
+        postal: 'Postal code or City',
         postalPlaceholder: 'e.g. 1204 Geneva or 8001 Zurich',
-        nom: 'First & Last Name',
+        nom: 'First & Last Name (optional)',
         nomPlaceholder: 'e.g. Claire Martin',
         tel: 'Mobile phone',
         telPlaceholder: 'e.g. +41 79 123 45 67',
-        email: 'Business email',
+        email: 'Business email (optional)',
         emailPlaceholder: 'e.g. hello@myshop.ch',
-        sujet: 'Needs / Desired plan',
-        message: 'Notes or preferred time slot (optional)',
+        sujet: 'Primary need (optional)',
+        message: 'Preferred callback slot or Google profile link (optional)',
         messagePlaceholder:
           'e.g. Best reached between 2:30 pm and 4:30 pm, or link to your Google profile.',
       },
+      step1Badge: 'Step 1 / 2 · Express callback (15 sec)',
+      step2Badge: 'Step 2 / 2 · Optional details',
+      step2ToggleExpand: 'Add sector, business email, or priority need (optional)',
+      step2ToggleCollapse: 'Hide optional details',
+      step2Title: 'One quick detail to tailor your free local audit? (optional)',
+      step2Subtitle:
+        'Your callback is already booked. Optionally add your sector, email, or top priority so your 5-min demo is tailored to your shop.',
+      step2SubmitIdle: 'Save optional details',
+      step2SubmitLoading: 'Saving...',
+      step2SavedMessage:
+        'Thank you! Your optional details have been added to your demo request.',
+      step2SkipBtn: 'All good, thanks',
+      step1DoneTitle: 'Callback request confirmed!',
+      step1DoneBody:
+        'A Komero Switzerland advisor will call your mobile shortly for your personalized 5-min demo.',
+      newRequestBtn: 'Send another request',
       consentPrefix:
         'I agree that Komero may use these details to contact me regarding my request, in accordance with the Swiss FADP, GDPR, and our ',
       consentPrivacyLink: 'Privacy Policy',
       consentSuffix: '.',
-      submitIdle: 'Send my request',
+      submitIdle: 'Request a 5-min demo callback',
       submitLoading: 'Sending...',
       bottomReassurance:
         '100% free & no obligation · Swiss FADP & GDPR compliant · Never sold to third parties',

@@ -61,7 +61,7 @@ test('Swiss and French phone and NPA/PLZ/city validation work across standard fo
   assert.equal(isValidCityOrPostalCode('690'), false);
 });
 
-test('validateProspectForm catches missing required fields, bad email/phone, and missing nLPD/revDSG/FADP consent in FR, DE, and EN', () => {
+test('validateProspectForm enforces Step 1 (3 essential fields + nLPD/revDSG/FADP consent) and optional strict Step 2 details', () => {
   const invalidInput = {
     nom: '',
     commerce: '',
@@ -75,15 +75,37 @@ test('validateProspectForm catches missing required fields, bad email/phone, and
   };
 
   for (const lang of ['fr', 'de', 'en'] as const) {
-    const errors = validateProspectForm(invalidInput, lang);
-    assert.ok(errors.commerce);
-    assert.ok(errors.code_postal);
-    assert.ok(errors.email);
-    assert.ok(errors.tel);
-    assert.ok(errors.metier);
-    assert.ok(errors.sujet);
-    assert.ok(errors.rgpdConsent);
+    // Step 1 express mode: requires commerce, code_postal, tel, rgpdConsent (and validates email if entered)
+    const step1Errors = validateProspectForm(invalidInput, lang);
+    assert.ok(step1Errors.commerce);
+    assert.ok(step1Errors.code_postal);
+    assert.ok(step1Errors.email);
+    assert.ok(step1Errors.tel);
+    assert.equal(step1Errors.metier, undefined);
+    assert.equal(step1Errors.sujet, undefined);
+    assert.ok(step1Errors.rgpdConsent);
+
+    // Strict mode with requireDetails: also checks metier & sujet
+    const strictErrors = validateProspectForm(invalidInput, lang, { requireDetails: true });
+    assert.ok(strictErrors.metier);
+    assert.ok(strictErrors.sujet);
   }
+
+  // Valid Step 1 submission with ONLY the 3 essential fields + consent passes cleanly
+  const expressValid = {
+    nom: '',
+    commerce: 'Boulangerie du Lac',
+    code_postal: '1204 Genève',
+    email: '',
+    tel: '+41 79 123 45 67',
+    metier: '',
+    sujet: '',
+    message: '',
+    rgpdConsent: true,
+  };
+  assert.deepEqual(validateProspectForm(expressValid, 'fr'), {});
+  assert.deepEqual(validateProspectForm(expressValid, 'de'), {});
+  assert.deepEqual(validateProspectForm(expressValid, 'en'), {});
 
   assert.ok(validateProspectForm(invalidInput, 'de').rgpdConsent?.includes('revDSG'));
   assert.ok(validateProspectForm(invalidInput, 'en').rgpdConsent?.includes('FADP'));

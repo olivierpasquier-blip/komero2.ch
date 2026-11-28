@@ -17,104 +17,7 @@ import {
 } from 'lucide-react';
 import type { Language } from '../../config/siteConfig';
 import { useLanguage } from '../../i18n/LanguageContext';
-
-/* -------------------------------------------------------------------------- */
-/* Shared inline SVG bakery display illustration (zero external images)        */
-/* -------------------------------------------------------------------------- */
-function ArtisanPastrySceneSvg({ className = 'w-full h-full' }: { className?: string }) {
-  return (
-    <svg
-      viewBox="0 0 320 210"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-      className={className}
-      aria-hidden="true"
-    >
-      <defs>
-        <linearGradient id="bakeryWall" x1="0" y1="0" x2="320" y2="210" gradientUnits="userSpaceOnUse">
-          <stop offset="0%" stopColor="#FEF3C7" />
-          <stop offset="55%" stopColor="#FDE68A" />
-          <stop offset="100%" stopColor="#F59E0B" stopOpacity="0.45" />
-        </linearGradient>
-        <linearGradient id="woodCounter" x1="0" y1="128" x2="0" y2="210" gradientUnits="userSpaceOnUse">
-          <stop offset="0%" stopColor="#B45309" />
-          <stop offset="100%" stopColor="#78350F" />
-        </linearGradient>
-        <linearGradient id="croissantGold" x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0%" stopColor="#F59E0B" />
-          <stop offset="55%" stopColor="#D97706" />
-          <stop offset="100%" stopColor="#92400E" />
-        </linearGradient>
-        <linearGradient id="glassGlare" x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0%" stopColor="#FFFFFF" stopOpacity="0.42" />
-          <stop offset="100%" stopColor="#FFFFFF" stopOpacity="0" />
-        </linearGradient>
-      </defs>
-
-      <rect width="320" height="210" fill="url(#bakeryWall)" />
-
-      {/* Warm pendant lights */}
-      <line x1="95" y1="0" x2="95" y2="30" stroke="#78350F" strokeWidth="2" />
-      <path d="M77 30C77 20 113 20 113 30H77Z" fill="#1E293B" />
-      <ellipse cx="95" cy="34" rx="14" ry="4" fill="#FEF08A" opacity="0.85" />
-
-      <line x1="225" y1="0" x2="225" y2="26" stroke="#78350F" strokeWidth="2" />
-      <path d="M209 26C209 17 241 17 241 26H209Z" fill="#1E293B" />
-      <ellipse cx="225" cy="30" rx="12" ry="3.5" fill="#FEF08A" opacity="0.85" />
-
-      {/* Shelf & baguette silhouettes */}
-      <rect x="24" y="64" width="272" height="6" rx="3" fill="#92400E" opacity="0.35" />
-      <rect x="44" y="42" width="14" height="24" rx="7" transform="rotate(-14 44 42)" fill="#D97706" opacity="0.7" />
-      <rect x="64" y="40" width="14" height="26" rx="7" transform="rotate(-8 64 40)" fill="#B45309" opacity="0.65" />
-      <rect x="244" y="44" width="32" height="20" rx="10" fill="#B45309" opacity="0.45" />
-
-      {/* Oak counter surface */}
-      <rect x="0" y="132" width="320" height="78" fill="url(#woodCounter)" />
-      <rect x="0" y="132" width="320" height="5" fill="#FDE68A" opacity="0.4" />
-
-      {/* Slate serving tray */}
-      <ellipse cx="160" cy="162" rx="116" ry="26" fill="#1E293B" />
-      <ellipse cx="160" cy="158" rx="108" ry="21" fill="#334155" />
-      <ellipse cx="160" cy="157" rx="94" ry="16" fill="#FFFBEB" />
-
-      {/* Left Croissant */}
-      <g transform="translate(82 126)">
-        <path
-          d="M8 28C10 12 28 4 46 6C62 8 74 18 76 30C66 34 52 33 42 30C30 27 18 33 8 28Z"
-          fill="url(#croissantGold)"
-        />
-        <path d="M24 10C28 16 28 24 26 29" stroke="#FEF3C7" strokeWidth="2" strokeLinecap="round" opacity="0.7" />
-        <path d="M44 7C47 14 47 22 45 29" stroke="#FEF3C7" strokeWidth="2" strokeLinecap="round" opacity="0.7" />
-        <path d="M60 12C62 18 62 24 60 30" stroke="#FEF3C7" strokeWidth="1.8" strokeLinecap="round" opacity="0.65" />
-      </g>
-
-      {/* Center Hero Croissant */}
-      <g transform="translate(124 114)">
-        <path
-          d="M6 34C10 12 34 2 56 5C76 8 92 20 94 36C80 41 64 38 50 35C35 32 18 40 6 34Z"
-          fill="url(#croissantGold)"
-        />
-        <path d="M26 10C32 18 32 28 29 35" stroke="#FEF3C7" strokeWidth="2.4" strokeLinecap="round" opacity="0.8" />
-        <path d="M50 6C54 16 54 26 51 34" stroke="#FEF3C7" strokeWidth="2.4" strokeLinecap="round" opacity="0.8" />
-        <path d="M72 13C75 20 75 28 72 35" stroke="#FEF3C7" strokeWidth="2.2" strokeLinecap="round" opacity="0.75" />
-      </g>
-
-      {/* Right Pain au chocolat */}
-      <g transform="translate(202 128)">
-        <rect x="4" y="6" width="52" height="28" rx="9" fill="#D97706" />
-        <rect x="10" y="10" width="40" height="8" rx="4" fill="#F59E0B" />
-        <circle cx="15" cy="24" r="3" fill="#451A03" />
-        <circle cx="43" cy="24" r="3" fill="#451A03" />
-      </g>
-
-      {/* Warm steam wisps */}
-      <path d="M150 104C147 96 154 90 150 82" stroke="#FFFFFF" strokeWidth="2" strokeLinecap="round" opacity="0.7" />
-      <path d="M174 100C171 92 178 86 174 78" stroke="#FFFFFF" strokeWidth="2" strokeLinecap="round" opacity="0.65" />
-
-      <polygon points="0,0 135,0 65,210 0,210" fill="url(#glassGlare)" />
-    </svg>
-  );
-}
+import { ArtisanBoutiqueCounterSvg } from './BoutiqueVectorScenes';
 
 /* -------------------------------------------------------------------------- */
 /* 1. /avis-google-ia — PC Browser ("Aperçu Komero - Réponse IA") + Mobile Maps*/
@@ -419,46 +322,46 @@ const SOCIAL_HERO_COPY: Record<
 > = {
   fr: {
     appTitle: 'Komero Mobile',
-    cameraHint: 'Vitrine',
+    cameraHint: 'Comptoir',
     generateBtn: 'Générer le post Facebook & Insta',
-    accountHandle: 'boulangerie_du_soleil',
-    locationLabel: 'Quartier Centre · Suisse',
+    accountHandle: 'atelier_du_quartier',
+    locationLabel: 'Lausanne · Boutique locale',
     likesLabel: "48 j'aime",
     captions: [
-      'Croustillante et dorée à souhait, venez goûter notre fournée chaude du matin... 🥐',
-      'Tout juste sortis du four ! Passez prendre votre pause café-croissant au comptoir. ☕🥐',
+      'Nouveauté en boutique cette semaine ! Venez découvrir notre sélection fraîchement arrivée en magasin. ✨',
+      'Fraîchement installé sur notre comptoir ! Passez découvrir nos créations artisanales et notre pause café du jour. ☕✨',
     ],
-    hashtags: '#BoulangerieArtisanale #Quartier #FaitMaison',
+    hashtags: '#CommerceLocal #Artisanat #BoutiqueDeQuartier',
     publishBtn: 'Publier en 1 clic',
     publishedBtn: 'Publié sur FB & Insta',
   },
   de: {
     appTitle: 'Komero Mobile',
-    cameraHint: 'Auslage',
+    cameraHint: 'Theke',
     generateBtn: 'Facebook- & Insta-Post erstellen',
-    accountHandle: 'boulangerie_du_soleil',
-    locationLabel: 'Quartier Zentrum · Schweiz',
+    accountHandle: 'quartier_atelier_ch',
+    locationLabel: 'Zürich · Lokales Geschäft',
     likesLabel: '48 Gefällt mir',
     captions: [
-      'Knusprig und goldbraun gebacken – probieren Sie unsere frische Morgenladung... 🥐',
-      'Frisch aus dem Ofen! Holen Sie sich jetzt Ihr warmes Gipfeli mit Kaffee an der Theke. ☕🥐',
+      'Neuheit diese Woche im Geschäft! Entdecken Sie unsere frisch eingetroffene Auswahl im Laden. ✨',
+      'Frisch an unserer Theke eingetroffen! Schauen Sie vorbei für unsere handverlesene Auswahl & einen Kaffee. ☕✨',
     ],
-    hashtags: '#Handwerksbäckerei #Quartier #FrischGebacken',
+    hashtags: '#LokalesGewerbe #Handwerk #Quartierladen',
     publishBtn: 'Mit 1 Klick posten',
     publishedBtn: 'Auf FB & Insta live',
   },
   en: {
     appTitle: 'Komero Mobile',
-    cameraHint: 'Display',
+    cameraHint: 'Counter',
     generateBtn: 'Generate Facebook & Insta post',
-    accountHandle: 'boulangerie_du_soleil',
-    locationLabel: 'City Center · Switzerland',
+    accountHandle: 'neighborhood_atelier',
+    locationLabel: 'Geneva · Local Boutique',
     likesLabel: '48 likes',
     captions: [
-      'Crispy and golden brown straight from the oven — come taste our morning batch... 🥐',
-      'Fresh out of the oven! Stop by the counter for a warm croissant and coffee break. ☕🥐',
+      'New in store this week! Come discover our freshly arrived selection in shop. ✨',
+      'Fresh on our counter today! Stop by for our handpicked artisan selection and a warm coffee break. ☕✨',
     ],
-    hashtags: '#ArtisanBakery #LocalShop #FreshlyBaked',
+    hashtags: '#LocalShop #ArtisanCraft #NeighborhoodStore',
     publishBtn: 'Publish in 1 click',
     publishedBtn: 'Published on FB & Insta',
   },
@@ -497,8 +400,8 @@ export function SocialMediaHeroVisual() {
             </div>
 
             <div className="relative bg-slate-950">
-              <ArtisanPastrySceneSvg className="w-full aspect-[4/3] object-cover" />
-              <div className="pointer-events-none absolute inset-3 border border-white/25 rounded-lg">
+              <ArtisanBoutiqueCounterSvg className="w-full aspect-[4/3] object-cover" />
+              <div className="pointer-events-none absolute inset-3 border border-white/30 rounded-lg">
                 <span className="absolute -top-0.5 -left-0.5 w-3 h-3 border-t-2 border-l-2 border-white" />
                 <span className="absolute -top-0.5 -right-0.5 w-3 h-3 border-t-2 border-r-2 border-white" />
                 <span className="absolute -bottom-0.5 -left-0.5 w-3 h-3 border-b-2 border-l-2 border-white" />
@@ -525,7 +428,7 @@ export function SocialMediaHeroVisual() {
             <div className="px-3.5 py-2.5 flex items-center justify-between border-b border-slate-100">
               <div className="flex items-center gap-2 min-w-0">
                 <span className="w-7 h-7 rounded-full bg-gradient-to-tr from-[#2563EB] to-[#10B981] text-white text-[10px] font-extrabold flex items-center justify-center shrink-0">
-                  BS
+                  AQ
                 </span>
                 <div className="min-w-0">
                   <p className="text-xs font-bold text-[#1E293B] truncate">{c.accountHandle}</p>
@@ -537,8 +440,8 @@ export function SocialMediaHeroVisual() {
               </span>
             </div>
 
-            <div className="aspect-[16/10] bg-amber-50 overflow-hidden border-b border-slate-100">
-              <ArtisanPastrySceneSvg className="w-full h-full object-cover" />
+            <div className="aspect-[16/10] bg-slate-50 overflow-hidden border-b border-slate-100">
+              <ArtisanBoutiqueCounterSvg className="w-full h-full object-cover" />
             </div>
 
             <div className="p-3.5 space-y-2">

@@ -13,13 +13,30 @@ const RouterContext = createContext<RouterContextValue>({
   navigate: () => {},
 });
 
-export function RouterProvider({ children }: { children: React.ReactNode }) {
-  const [locationState, setLocationState] = useState<{ path: RoutePath; search: string }>(() => ({
-    path: normalizeRoutePath(window.location.pathname),
-    search: window.location.search,
-  }));
+export function RouterProvider({
+  children,
+  initialPath,
+  initialSearch = '',
+}: {
+  children: React.ReactNode;
+  initialPath?: RoutePath;
+  initialSearch?: string;
+}) {
+  const [locationState, setLocationState] = useState<{ path: RoutePath; search: string }>(() => {
+    if (initialPath) {
+      return { path: initialPath, search: initialSearch };
+    }
+    if (typeof window === 'undefined') {
+      return { path: '/', search: '' };
+    }
+    return {
+      path: normalizeRoutePath(window.location.pathname),
+      search: window.location.search,
+    };
+  });
 
   useEffect(() => {
+    if (typeof window === 'undefined') return;
     const handlePopState = () => {
       setLocationState({
         path: normalizeRoutePath(window.location.pathname),

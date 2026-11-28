@@ -19,6 +19,7 @@ import { LanguageSwitcher } from './LanguageSwitcher';
 import { Link, useRouter } from './Router';
 
 const FEATURE_PATHS = new Set<RoutePath>([
+  '/gestion-fiche-google',
   '/avis-google-ia',
   '/reseaux-sociaux',
   '/repondeur-sms',

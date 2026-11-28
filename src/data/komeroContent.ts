@@ -1,5 +1,5 @@
 import { SITE_CONFIG, type Language } from '../config/siteConfig';
-import type { FaqEntry, FeatureRoutePath } from '../lib/seo';
+import type { FaqEntry, FeatureRoutePath, RoutePath } from '../lib/seo';
 
 export const ASSETS = {
   logoHeader: '/assets/komero-logo-header.png',
@@ -14,8 +14,6 @@ export const ASSETS = {
   wineShop: '/assets/komero-caviste-promo-flash-sms.webp',
   pressingCounter: '/assets/komero-pressing-comptoir-roue-qr.webp',
   artisanCounter: '/assets/komero-artisan-veille-locale.webp',
-  croissants: '/assets/komero-croissants-boulangerie.jpg',
-  socialBrioche: '/assets/komero-reseaux-sociaux-brioche-boulangerie.webp',
   socialWine: '/assets/komero-reseaux-sociaux-vin-caviste.webp',
 } as const;
 
@@ -401,6 +399,216 @@ export interface PricingPlan {
   ctaLabel: string;
   stripeUrl: string;
   features: string[];
+  featureLinks?: Partial<Record<number, RoutePath>>;
+}
+
+export interface PricingComparisonRow {
+  id: string;
+  label: string;
+  path?: RoutePath;
+  essentiel: string | boolean;
+  premium: string | boolean;
+}
+
+export function getPricingComparisonRows(lang: Language = 'fr'): PricingComparisonRow[] {
+  if (lang === 'de') {
+    return [
+      {
+        id: 'gbp-core',
+        label: 'Pflege Ihres Google-Unternehmensprofils (Sonderöffnungszeiten, Feiertage & KI-Beschreibung)',
+        path: '/gestion-fiche-google',
+        essentiel: true,
+        premium: true,
+      },
+      {
+        id: 'gbp-audit',
+        label: 'Vollständigkeits-Audit & Google-Beiträge parallel zu Social Media',
+        path: '/gestion-fiche-google',
+        essentiel: false,
+        premium: true,
+      },
+      {
+        id: 'reviews',
+        label: 'Google-Bewertungen mit KI (bis 100 Antworten/Monat + SMS-Alarm)',
+        path: '/avis-google-ia',
+        essentiel: true,
+        premium: true,
+      },
+      {
+        id: 'social',
+        label: 'Social Media Express (30 Instagram- & Facebook-Posts/Monat)',
+        path: '/reseaux-sociaux',
+        essentiel: true,
+        premium: true,
+      },
+      {
+        id: 'starter-pack',
+        label: 'Starter Pack Kontakte & Google-Bewertungen (QR-Aufsteller + Glücksrad)',
+        path: '/roue-de-la-chance',
+        essentiel: 'Gratis inklusive',
+        premium: 'Gratis inklusive',
+      },
+      {
+        id: 'missed-calls',
+        label: 'Eigene Geschäftsnummer + Auto-SMS bei verpasstem Anruf',
+        path: '/repondeur-sms',
+        essentiel: false,
+        premium: true,
+      },
+      {
+        id: 'sms-flash',
+        label: 'SMS-Flash-Aktionen mit 1 Klick an Stammkunden (inkl. STOP)',
+        path: '/campagnes-sms-flash',
+        essentiel: false,
+        premium: true,
+      },
+      {
+        id: 'market-watch',
+        label: 'Lokale Markt- & Trendbeobachtung im Quartier (wöchentlich)',
+        path: '/veille-concurrence',
+        essentiel: false,
+        premium: true,
+      },
+      {
+        id: 'pwa',
+        label: 'Zugang auf PC & Smartphone (PWA) · revDSG & DSGVO konform',
+        essentiel: true,
+        premium: true,
+      },
+    ];
+  }
+
+  if (lang === 'en') {
+    return [
+      {
+        id: 'gbp-core',
+        label: 'Google Business Profile management (special hours, holidays & 1-click AI description)',
+        path: '/gestion-fiche-google',
+        essentiel: true,
+        premium: true,
+      },
+      {
+        id: 'gbp-audit',
+        label: 'Completeness audit & Google Posts published alongside social media',
+        path: '/gestion-fiche-google',
+        essentiel: false,
+        premium: true,
+      },
+      {
+        id: 'reviews',
+        label: 'AI Google Reviews (up to 100 replies/month + SMS alerts)',
+        path: '/avis-google-ia',
+        essentiel: true,
+        premium: true,
+      },
+      {
+        id: 'social',
+        label: 'Express Social Media (30 Instagram & Facebook posts/month)',
+        path: '/reseaux-sociaux',
+        essentiel: true,
+        premium: true,
+      },
+      {
+        id: 'starter-pack',
+        label: 'Contacts & Google Reviews Starter Pack (countertop QR stand + Lucky Wheel)',
+        path: '/roue-de-la-chance',
+        essentiel: 'Included free',
+        premium: 'Included free',
+      },
+      {
+        id: 'missed-calls',
+        label: 'Dedicated shop number + automatic missed-call SMS',
+        path: '/repondeur-sms',
+        essentiel: false,
+        premium: true,
+      },
+      {
+        id: 'sms-flash',
+        label: '1-click Flash SMS offers to loyal regulars (STOP included)',
+        path: '/campagnes-sms-flash',
+        essentiel: false,
+        premium: true,
+      },
+      {
+        id: 'market-watch',
+        label: 'Weekly local competitor & neighborhood trend watch',
+        path: '/veille-concurrence',
+        essentiel: false,
+        premium: true,
+      },
+      {
+        id: 'pwa',
+        label: 'Desktop & Mobile PWA access · Swiss FADP & GDPR compliant',
+        essentiel: true,
+        premium: true,
+      },
+    ];
+  }
+
+  return [
+    {
+      id: 'gbp-core',
+      label: 'Gestion de votre Fiche Google (horaires exceptionnels, jours fériés & description IA en 1 clic)',
+      path: '/gestion-fiche-google',
+      essentiel: true,
+      premium: true,
+    },
+    {
+      id: 'gbp-audit',
+      label: 'Audit de complétude & actualités Google Posts publiés avec vos réseaux',
+      path: '/gestion-fiche-google',
+      essentiel: false,
+      premium: true,
+    },
+    {
+      id: 'reviews',
+      label: 'Avis Google IA (jusqu’à 100 réponses personnalisées/mois + alertes SMS)',
+      path: '/avis-google-ia',
+      essentiel: true,
+      premium: true,
+    },
+    {
+      id: 'social',
+      label: 'Réseaux Sociaux Express (30 posts Instagram & Facebook/mois)',
+      path: '/reseaux-sociaux',
+      essentiel: true,
+      premium: true,
+    },
+    {
+      id: 'starter-pack',
+      label: 'Starter Pack Contacts & Avis Google (chevalet QR comptoir + Roue de la chance)',
+      path: '/roue-de-la-chance',
+      essentiel: 'Offert',
+      premium: 'Offert',
+    },
+    {
+      id: 'missed-calls',
+      label: 'Numéro pro dédié + SMS automatique sur appel manqué',
+      path: '/repondeur-sms',
+      essentiel: false,
+      premium: true,
+    },
+    {
+      id: 'sms-flash',
+      label: 'Campagnes Promo Flash SMS en 1 clic (mention STOP incluse)',
+      path: '/campagnes-sms-flash',
+      essentiel: false,
+      premium: true,
+    },
+    {
+      id: 'market-watch',
+      label: 'Veille Concurrence & Tendances Locales (analyse hebdo du quartier)',
+      path: '/veille-concurrence',
+      essentiel: false,
+      premium: true,
+    },
+    {
+      id: 'pwa',
+      label: 'Accès PC & Mobile (PWA) · Conforme nLPD (Suisse) & RGPD',
+      essentiel: true,
+      premium: true,
+    },
+  ];
 }
 
 export function getPricingPlans(lang: Language = 'fr'): PricingPlan[] {
@@ -420,11 +628,17 @@ export function getPricingPlans(lang: Language = 'fr'): PricingPlan[] {
         ctaLabel: 'Jetzt starten (7 Tage gratis)',
         stripeUrl: SITE_CONFIG.stripeLinkEssentiel,
         features: [
+          'Pflege Ihres Google-Unternehmensprofils: Sonderöffnungszeiten, Feiertage & KI-Beschreibung mit 1 Klick',
           'Google-Bewertungen mit KI (bis 100 persönliche Antworten / Monat + SMS-Alarm)',
           'Social Media Express (30 fertige Instagram- & Facebook-Posts / Monat)',
           'Zugang auf PC & Smartphone inklusive, ohne Vertragsbindung',
           'Freigabe mit 1 Klick sowie revDSG- & DSGVO-konforme Anonymisierung',
         ],
+        featureLinks: {
+          0: '/gestion-fiche-google',
+          1: '/avis-google-ia',
+          2: '/reseaux-sociaux',
+        },
       },
       {
         id: 'premium',
@@ -440,11 +654,18 @@ export function getPricingPlans(lang: Language = 'fr'): PricingPlan[] {
         ctaLabel: 'Jetzt starten (7 Tage gratis)',
         stripeUrl: SITE_CONFIG.stripeLinkPremium,
         features: [
-          'Komplettes Basis-Paket inklusive (Google-Bewertungen KI, 30 Posts, PC & Mobil + Starter Pack gratis)',
+          'Komplettes Basis-Paket inklusive (Google-Unternehmensprofil, Google-Bewertungen KI, 30 Posts, PC & Mobil + Starter Pack gratis)',
+          'Vollständigkeits-Audit & Google-Beiträge parallel zu Social Media',
           'Eigene Geschäftsnummer + automatische SMS bei verpasstem Anruf',
           'SMS-Flash-Aktionen mit 1 Klick an Ihre Stammkunden (STOP-Hinweis inklusive)',
           'Lokale Markt- & Trendbeobachtung (wöchentliche Quartier-Analyse & Post-Ideen)',
         ],
+        featureLinks: {
+          1: '/gestion-fiche-google',
+          2: '/repondeur-sms',
+          3: '/campagnes-sms-flash',
+          4: '/veille-concurrence',
+        },
       },
     ];
   }
@@ -465,11 +686,17 @@ export function getPricingPlans(lang: Language = 'fr'): PricingPlan[] {
         ctaLabel: 'Start now (7 days free)',
         stripeUrl: SITE_CONFIG.stripeLinkEssentiel,
         features: [
+          'Google Business Profile management: special hours, holidays & 1-click AI description',
           'AI Google Reviews (up to 100 personalized replies / month + SMS alerts)',
           'Express Social Media (30 ready Instagram & Facebook posts / month)',
           'Desktop & Mobile access included, no commitment',
           '1-click human approval and Swiss FADP & GDPR anonymization',
         ],
+        featureLinks: {
+          0: '/gestion-fiche-google',
+          1: '/avis-google-ia',
+          2: '/reseaux-sociaux',
+        },
       },
       {
         id: 'premium',
@@ -485,11 +712,18 @@ export function getPricingPlans(lang: Language = 'fr'): PricingPlan[] {
         ctaLabel: 'Start now (7 days free)',
         stripeUrl: SITE_CONFIG.stripeLinkPremium,
         features: [
-          'Full Essential plan included (AI Google Reviews, 30 posts, Desktop & Mobile + Free Starter Pack)',
+          'Full Essential plan included (Google Business Profile, AI Google Reviews, 30 posts, Desktop & Mobile + Free Starter Pack)',
+          'Completeness audit & Google Posts published alongside social media',
           'Dedicated shop number + automatic SMS on missed calls',
           '1-click Flash SMS offers to loyal customers (STOP opt-out included)',
           'Local Market & Trend Watch (weekly neighborhood briefing & ready post ideas)',
         ],
+        featureLinks: {
+          1: '/gestion-fiche-google',
+          2: '/repondeur-sms',
+          3: '/campagnes-sms-flash',
+          4: '/veille-concurrence',
+        },
       },
     ];
   }
@@ -509,11 +743,17 @@ export function getPricingPlans(lang: Language = 'fr'): PricingPlan[] {
       ctaLabel: 'Démarrer (7 jours gratuits)',
       stripeUrl: SITE_CONFIG.stripeLinkEssentiel,
       features: [
+        'Gestion de votre Fiche Google : horaires exceptionnels, jours fériés et description IA en 1 clic',
         'Avis Google IA (jusqu’à 100 réponses personnalisées / mois + alertes SMS)',
         'Posts Réseaux Sociaux Express (30 posts / mois Instagram & Facebook)',
         'Accès application PC & Mobile, sans engagement',
         'Validation humaine en 1 clic et anonymisation conforme nLPD & RGPD',
       ],
+      featureLinks: {
+        0: '/gestion-fiche-google',
+        1: '/avis-google-ia',
+        2: '/reseaux-sociaux',
+      },
     },
     {
       id: 'premium',
@@ -529,11 +769,18 @@ export function getPricingPlans(lang: Language = 'fr'): PricingPlan[] {
       ctaLabel: 'Démarrer (7 jours gratuits)',
       stripeUrl: SITE_CONFIG.stripeLinkPremium,
       features: [
-        'Tout le pack Essentiel inclus (Avis Google IA, 30 posts, PC & Mobile + Starter Pack offert)',
+        'Tout le pack Essentiel inclus (Gestion de votre Fiche Google, Avis Google IA, 30 posts, PC & Mobile + Starter Pack offert)',
+        'Audit de complétude & actualités Google Posts publiés avec vos réseaux',
         'Numéro pro dédié + SMS automatique sur appel manqué',
         'Envoi de promos par SMS en 1 clic à vos clients fidèles (mention STOP incluse)',
         'Veille Concurrence & Tendances Locales (analyse hebdo du quartier et idées de posts)',
       ],
+      featureLinks: {
+        1: '/gestion-fiche-google',
+        2: '/repondeur-sms',
+        3: '/campagnes-sms-flash',
+        4: '/veille-concurrence',
+      },
     },
   ];
 }
@@ -559,6 +806,12 @@ const PRICING_FAQ_BY_LANG: Record<Language, FaqEntry[]> = {
       question: 'Comment gérer, modifier ou résilier mon abonnement sans engagement ?',
       answer:
         'Nos deux formules Essentiel et Premium sont 100 % sans engagement. Vous pouvez gérer ou résilier en 1 clic depuis votre portail client Stripe ou en écrivant à contact@komero.ch avant l’échéance mensuelle, sans frais ni pénalité.',
+    },
+    {
+      id: 'gestion-fiche-google',
+      question: 'La gestion de ma Fiche Google (horaires, jours fériés, description) est-elle incluse ?',
+      answer:
+        'Oui. Dès la formule Essentiel (19,90 CHF/mois), vous mettez à jour vos horaires exceptionnels, jours fériés suisses et votre description optimisée par l’IA en 1 clic. La formule Premium (49,90 CHF/mois) ajoute l’audit de complétude et la publication d’actualités Google Posts en parallèle de vos réseaux sociaux.',
     },
     {
       id: 'facture-chf',
@@ -587,6 +840,12 @@ const PRICING_FAQ_BY_LANG: Record<Language, FaqEntry[]> = {
         'Beide Pakete (Basis und Premium) sind monatlich und ohne Vertragsbindung. Sie kündigen oder wechseln jederzeit mit 1 Klick über Ihr Stripe-Kundenportal oder per E-Mail an contact@komero.ch — ohne Gebühren oder Kündigungsfrist.',
     },
     {
+      id: 'gestion-fiche-google',
+      question: 'Ist die Pflege meines Google-Unternehmensprofils (Öffnungszeiten, Feiertage, Beschreibung) enthalten?',
+      answer:
+        'Ja. Bereits im Paket Basis (19,90 CHF/Monat) aktualisieren Sie Sonderöffnungszeiten, Schweizer Feiertage und Ihre KI-optimierte Profilbeschreibung mit 1 Klick. Im Paket Premium (49,90 CHF/Monat) kommen das Vollständigkeits-Audit und Google-Beiträge parallel zu Social Media dazu.',
+    },
+    {
       id: 'facture-chf',
       question: 'Erhalte ich eine Geschäftsrechnung in CHF für meine Buchhaltung?',
       answer:
@@ -611,6 +870,12 @@ const PRICING_FAQ_BY_LANG: Record<Language, FaqEntry[]> = {
       question: 'How do I manage, change, or cancel my no-commitment subscription?',
       answer:
         'Both Essential and Premium plans have zero commitment. Manage or cancel anytime in 1 click via your Stripe Customer Portal or by emailing contact@komero.ch before your renewal date, with no fees or penalties.',
+    },
+    {
+      id: 'gestion-fiche-google',
+      question: 'Is Google Business Profile management (hours, holidays, description) included?',
+      answer:
+        'Yes. Starting with the Essential Plan (19.90 CHF/month), you update special hours, Swiss holidays, and your AI-optimized shop description in 1 click. The Premium Plan (49.90 CHF/month) adds the completeness audit and Google Posts published alongside your social media.',
     },
     {
       id: 'facture-chf',

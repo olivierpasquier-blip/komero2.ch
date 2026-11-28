@@ -257,7 +257,8 @@ const VALIDATION_MESSAGES: Record<
 
 export function validateProspectForm(
   input: ProspectFormInput,
-  lang: Language = 'fr'
+  lang: Language = 'fr',
+  options?: { requireDetails?: boolean }
 ): ProspectValidationErrors {
   const msg = VALIDATION_MESSAGES[lang];
   const errors: ProspectValidationErrors = {};
@@ -282,12 +283,14 @@ export function validateProspectForm(
     errors.email = msg.emailInvalid;
   }
 
-  if (!input.metier.trim()) {
-    errors.metier = msg.metier;
-  }
+  if (options?.requireDetails) {
+    if (!input.metier.trim()) {
+      errors.metier = msg.metier;
+    }
 
-  if (!input.sujet.trim()) {
-    errors.sujet = msg.sujet;
+    if (!input.sujet.trim()) {
+      errors.sujet = msg.sujet;
+    }
   }
 
   if (!input.rgpdConsent) {
@@ -313,18 +316,21 @@ export function buildProspectPayload(
   const rawMessage = input.message.trim();
   const formattedMessage = rawMessage ? `[${subjectLabel}] ${rawMessage}` : subjectLabel;
 
+  const fallbackNotSpecified =
+    lang === 'de' ? 'Nicht angegeben' : lang === 'en' ? 'Not specified' : 'Non précisé';
+
   return {
     horodatage: now.toISOString(),
     date_fr: formatFrenchTimestamp(now),
     source: 'komero.ch',
     langue: lang,
     besoin: subjectLabel,
-    nom: input.nom.trim() || (lang === 'de' ? 'Nicht angegeben' : lang === 'en' ? 'Not specified' : 'Non précisé'),
+    nom: input.nom.trim() || fallbackNotSpecified,
     commerce: input.commerce.trim(),
     code_postal: input.code_postal.trim(),
     email: input.email.trim(),
     tel: formatFrenchPhone(input.tel),
-    metier: input.metier.trim(),
+    metier: input.metier.trim() || fallbackNotSpecified,
     message: formattedMessage,
     rgpd_consent: Boolean(input.rgpdConsent),
   };

@@ -22,6 +22,11 @@ import {
   type RoutePath,
 } from './seo';
 import {
+  PRERENDER_ROUTES,
+  buildStaticSeoHeadHtml,
+  injectPrerenderedHtml,
+} from './prerenderUtils';
+import {
   CGV_ARTICLES,
   CONFIDENTIALITE_SECTIONS,
   MENTIONS_LEGALES_SECTIONS,
@@ -29,14 +34,14 @@ import {
 } from '../data/legalContent';
 import { ASSETS, getAdjacentFeatures } from '../data/komeroContent';
 
-test('all 13 routes across FR, DE, and EN have SEO titles < 60 chars, descriptions < 155 chars, and clean /assets/ OG images', () => {
+test('all 14 routes across FR, DE, and EN have SEO titles < 60 chars, descriptions < 155 chars, and clean /assets/ OG images', () => {
   const routes = Object.keys(PAGE_SEO) as RoutePath[];
-  assert.equal(routes.length, 13);
+  assert.equal(routes.length, 14);
   assert.equal(SITE_ORIGIN, 'https://www.komero.ch');
 
   for (const lang of SUPPORTED_LANGUAGES) {
     const seoMap = PAGE_SEO_BY_LANG[lang];
-    assert.equal(Object.keys(seoMap).length, 13);
+    assert.equal(Object.keys(seoMap).length, 14);
 
     for (const route of routes) {
       const meta = seoMap[route];
@@ -78,6 +83,7 @@ test('buildHreflangAlternates outputs fr-CH, de-CH, en-CH, and x-default for kom
 });
 
 test('normalizeRoutePath resolves all routes, legacy aliases, and falls back to /', () => {
+  assert.equal(normalizeRoutePath('/gestion-fiche-google/'), '/gestion-fiche-google');
   assert.equal(normalizeRoutePath('/avis-google-ia/'), '/avis-google-ia');
   assert.equal(normalizeRoutePath('/repondeur-sms/'), '/repondeur-sms');
   assert.equal(normalizeRoutePath('/repondeur-sms-whatsapp/'), '/repondeur-sms');
@@ -140,6 +146,8 @@ test('LocalBusiness JSON-LD, siteConfig overrides, Swiss nLPD/revDSG/FADP legal 
     )
   );
   assert.equal(CGV_ARTICLES.length, 8);
+  assert.ok(CGV_ARTICLES[1].bullets?.some((b) => b.includes('Gestion de votre Fiche Google')));
+  assert.ok(CGV_ARTICLES[1].bullets?.some((b) => b.includes('Audit de complétude')));
   assert.ok(CGV_ARTICLES[2].paragraphs.join(' ').includes('19,90 CHF'));
   assert.ok(CGV_ARTICLES[2].paragraphs.join(' ').includes('49,90 CHF'));
   assert.ok(CGV_ARTICLES[2].paragraphs.join(' ').includes('7 jours d’essai gratuit'));
@@ -157,15 +165,23 @@ test('LocalBusiness JSON-LD, siteConfig overrides, Swiss nLPD/revDSG/FADP legal 
   );
   assert.ok(CONFIDENTIALITE_SECTIONS.some((s) => s.paragraphs.join(' ').includes('nLPD')));
 
-  // Verify German (revDSG) and English (FADP) legal documents include CHF pricing & local privacy laws
+  // Verify German (revDSG) and English (FADP) legal documents include CHF pricing, Google Profile & local privacy laws
   const legalDe = buildLegalContent(SITE_CONFIG, 'de');
   assert.equal(legalDe.cgvArticles.length, 8);
+  assert.ok(
+    legalDe.cgvArticles[1].bullets?.some((b) => b.includes('Google-Unternehmensprofils'))
+  );
+  assert.ok(legalDe.cgvArticles[1].bullets?.some((b) => b.includes('Vollständigkeits-Audit')));
   assert.ok(legalDe.cgvArticles[2].paragraphs.join(' ').includes('19,90 CHF'));
   assert.ok(legalDe.cgvArticles[2].paragraphs.join(' ').includes('49,90 CHF'));
   assert.ok(legalDe.confidentialite.some((s) => s.paragraphs.join(' ').includes('revDSG')));
 
   const legalEn = buildLegalContent(SITE_CONFIG, 'en');
   assert.equal(legalEn.cgvArticles.length, 8);
+  assert.ok(
+    legalEn.cgvArticles[1].bullets?.some((b) => b.includes('Google Business Profile management'))
+  );
+  assert.ok(legalEn.cgvArticles[1].bullets?.some((b) => b.includes('Completeness audit')));
   assert.ok(legalEn.cgvArticles[2].paragraphs.join(' ').includes('19.90 CHF'));
   assert.ok(legalEn.cgvArticles[2].paragraphs.join(' ').includes('49.90 CHF'));
   assert.ok(legalEn.confidentialite.some((s) => s.paragraphs.join(' ').includes('FADP')));
@@ -235,6 +251,7 @@ test('getRobotsDirective sets noindex, follow only on duplicate legal tabs and i
 
   const indexableRoutes: RoutePath[] = [
     '/',
+    '/gestion-fiche-google',
     '/avis-google-ia',
     '/reseaux-sociaux',
     '/repondeur-sms',
@@ -253,4 +270,38 @@ test('getRobotsDirective sets noindex, follow only on duplicate legal tabs and i
       `Expected index, follow for ${route}`
     );
   }
+});
+
+test('SSG prerendering generates unique head SEO, hreflang, CHF JSON-LD, FAQPage, and body markup for all 15 public routes', () => {
+  assert.equal(PRERENDER_ROUTES.length, 15);
+  assert.ok(PRERENDER_ROUTES.some((r) => r.urlPath === '/gestion-fiche-google'));
+  assert.ok(PRERENDER_ROUTES.some((r) => r.urlPath === '/repondeur-sms-whatsapp'));
+
+  const baseTemplate = `<!doctype html>
+<html lang="fr-CH">
+  <head>
+    <title>Default</title>
+    <meta name="description" content="Default desc" />
+    <link rel="canonical" href="https://www.komero.ch/" />
+  </head>
+  <body>
+    <div id="root"></div>
+  </body>
+</html>`;
+
+  const homeHtml = injectPrerenderedHtml(baseTemplate, '/', '<main><h1>Komero Suisse</h1></main>', 'fr');
+  assert.ok(homeHtml.includes('<html lang="fr-CH">'));
+  assert.ok(homeHtml.includes('<link rel="canonical" href="https://www.komero.ch/" />'));
+  assert.ok(homeHtml.includes('hreflang="fr-CH"'));
+  assert.ok(homeHtml.includes('hreflang="de-CH"'));
+  assert.ok(homeHtml.includes('hreflang="en-CH"'));
+  assert.ok(homeHtml.includes('hreflang="x-default"'));
+  assert.ok(homeHtml.includes('"priceCurrency":"CHF"'));
+  assert.ok(homeHtml.includes('"@type":"FAQPage"'));
+  assert.ok(homeHtml.includes('<div id="root"><main><h1>Komero Suisse</h1></main></div>'));
+
+  const gbpHead = buildStaticSeoHeadHtml('/gestion-fiche-google', 'de');
+  assert.equal(gbpHead.htmlLang, 'de-CH');
+  assert.ok(gbpHead.headMarkup.includes('https://www.komero.ch/gestion-fiche-google'));
+  assert.ok(gbpHead.headMarkup.includes('"priceCurrency":"CHF"'));
 });

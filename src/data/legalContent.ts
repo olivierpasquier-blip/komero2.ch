@@ -67,8 +67,8 @@ export function buildLegalContent(
             'Komero stellt dem Kunden eine Online-Plattform für PC/Mac und Smartphone bereit, verfügbar in zwei Paketen:',
           ],
           bullets: [
-            'Paket Basis: Google-Bewertungen mit KI (bis 100 Antworten/Monat + SMS-Alarm), Social Media Express (bis 30 Beiträge/Monat auf Instagram & Facebook) sowie das gratis Starter Pack Kontakte & Google-Bewertungen.',
-            'Paket Premium: Gesamtes Basis-Paket inklusive Starter Pack + Geschäftsnummer mit automatischer SMS bei verpasstem Anruf + SMS-Flash-Aktionen + lokale Markt- und Trendbeobachtung.',
+            'Paket Basis: Pflege Ihres Google-Unternehmensprofils (Sonderöffnungszeiten, Feiertage & KI-Beschreibung mit 1 Klick), Google-Bewertungen mit KI (bis 100 Antworten/Monat + SMS-Alarm), Social Media Express (bis 30 Beiträge/Monat auf Instagram & Facebook) sowie das gratis Starter Pack Kontakte & Google-Bewertungen.',
+            'Paket Premium: Gesamtes Basis-Paket inklusive Starter Pack + Vollständigkeits-Audit & Google-Beiträge parallel zu Social Media + Geschäftsnummer mit automatischer SMS bei verpasstem Anruf + SMS-Flash-Aktionen + lokale Markt- und Trendbeobachtung.',
           ],
         },
         {
@@ -231,8 +231,8 @@ export function buildLegalContent(
             'Komero provides an online software platform accessible on desktop and mobile in two plans:',
           ],
           bullets: [
-            'Essential Plan: AI Google Reviews (up to 100 replies/month + SMS alerts), Express Social Media (up to 30 Instagram & Facebook posts/month), and the free Contacts & Google Reviews Starter Pack.',
-            'Premium Plan: Full Essential Plan including the free Starter Pack + Dedicated shop number with automatic missed-call SMS + Flash SMS Campaigns + Local Market & Trend Watch.',
+            'Essential Plan: Google Business Profile management (special hours, holidays & 1-click AI description), AI Google Reviews (up to 100 replies/month + SMS alerts), Express Social Media (up to 30 Instagram & Facebook posts/month), and the free Contacts & Google Reviews Starter Pack.',
+            'Premium Plan: Full Essential Plan including the free Starter Pack + Completeness audit & Google Posts published alongside social media + Dedicated shop number with automatic missed-call SMS + Flash SMS Campaigns + Local Market & Trend Watch.',
           ],
         },
         {
@@ -395,8 +395,8 @@ export function buildLegalContent(
         'Komero met à disposition du Client une plateforme logicielle en ligne (SaaS) accessible sur ordinateur (PC/Mac) et sur smartphone, déclinée en deux formules :',
       ],
       bullets: [
-        'Formule Essentiel : Avis Google IA (jusqu’à 100 réponses personnalisées par mois et alertes SMS), Réseaux Sociaux Express (jusqu’à 30 publications Instagram & Facebook par mois) et Starter Pack Contacts & Avis Google inclus gratuitement pendant toute la durée de l’abonnement.',
-        'Formule Premium : intégralité de la Formule Essentiel (incluant le Starter Pack offert) + Téléphonie & Répondeur SMS automatique sur appel manqué + Campagnes Promo Flash SMS + Veille Concurrence & Tendances Locales.',
+        'Formule Essentiel : Gestion de votre Fiche Google (horaires exceptionnels, jours fériés et description IA en 1 clic), Avis Google IA (jusqu’à 100 réponses personnalisées par mois et alertes SMS), Réseaux Sociaux Express (jusqu’à 30 publications Instagram & Facebook par mois) et Starter Pack Contacts & Avis Google inclus gratuitement pendant toute la durée de l’abonnement.',
+        'Formule Premium : intégralité de la Formule Essentiel (incluant la Gestion de votre Fiche Google et le Starter Pack offert) + Audit de complétude & actualités Google Posts publiés avec vos réseaux + Téléphonie & Répondeur SMS automatique sur appel manqué + Campagnes Promo Flash SMS + Veille Concurrence & Tendances Locales.',
       ],
     },
     {

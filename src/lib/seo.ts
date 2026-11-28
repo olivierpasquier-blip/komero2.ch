@@ -6,6 +6,7 @@ import {
 
 export type RoutePath =
   | '/'
+  | '/gestion-fiche-google'
   | '/avis-google-ia'
   | '/reseaux-sociaux'
   | '/repondeur-sms'
@@ -74,6 +75,15 @@ export const PAGE_SEO_BY_LANG: Record<Language, Record<RoutePath, PageSeoMeta>> 
       ogImage: OG_IMAGE,
       breadcrumbLabel: 'Accueil',
       keywords: ['assistant IA commerçant Suisse', 'avis Google', 'visibilité locale'],
+    },
+    '/gestion-fiche-google': {
+      path: '/gestion-fiche-google',
+      title: 'Gestion Fiche Google Business & Horaires IA | Komero',
+      description:
+        'Synchronisez horaires exceptionnels, jours fériés suisses, description optimisée IA et actualités sur Google Maps en 1 clic avec Komero.',
+      ogImage: OG_IMAGE,
+      breadcrumbLabel: 'Gestion Fiche Google',
+      keywords: ['gestion fiche Google Suisse', 'Google Business Profile', 'horaires jours fériés'],
     },
     '/avis-google-ia': {
       path: '/avis-google-ia',
@@ -195,6 +205,15 @@ export const PAGE_SEO_BY_LANG: Record<Language, Record<RoutePath, PageSeoMeta>> 
       breadcrumbLabel: 'Startseite',
       keywords: ['KI Assistent Geschäft Schweiz', 'Google Bewertungen'],
     },
+    '/gestion-fiche-google': {
+      path: '/gestion-fiche-google',
+      title: 'Google-Unternehmensprofil & Feiertage KI | Komero CH',
+      description:
+        'Aktualisieren Sie Sonderöffnungszeiten, Schweizer Feiertage, KI-Beschreibung und Neuigkeiten auf Google Maps mit 1 Klick über Komero.',
+      ogImage: OG_IMAGE,
+      breadcrumbLabel: 'Google-Profil verwalten',
+      keywords: ['Google Unternehmensprofil Schweiz', 'Sonderöffnungszeiten', 'Google Maps'],
+    },
     '/avis-google-ia': {
       path: '/avis-google-ia',
       title: 'Google-Bewertungen KI & Google Maps Schweiz | Komero',
@@ -314,6 +333,15 @@ export const PAGE_SEO_BY_LANG: Record<Language, Record<RoutePath, PageSeoMeta>> 
       ogImage: OG_IMAGE,
       breadcrumbLabel: 'Home',
       keywords: ['AI assistant local shop Switzerland', 'Google reviews'],
+    },
+    '/gestion-fiche-google': {
+      path: '/gestion-fiche-google',
+      title: 'Google Business Profile & Holiday Hours AI | Komero',
+      description:
+        'Keep Swiss public holiday hours, AI-optimized business descriptions, and local shop updates live on Google Maps in 1 click with Komero.',
+      ogImage: OG_IMAGE,
+      breadcrumbLabel: 'Google Profile Management',
+      keywords: ['Google Business Profile Switzerland', 'holiday hours Google Maps', 'local SEO'],
     },
     '/avis-google-ia': {
       path: '/avis-google-ia',
@@ -518,25 +546,25 @@ export function buildSoftwareApplicationJsonLd(lang: Language = 'fr') {
       ess: 'Formule Essentiel',
       prem: 'Formule Premium',
       essDesc:
-        'Starter Pack Contacts & Avis Google offert + Avis Google IA (100/mois) + Posts Réseaux Sociaux Express (30/mois) + PC & Mobile, 7 jours gratuits, sans engagement.',
+        'Gestion de votre Fiche Google (horaires exceptionnels, jours fériés et description IA en 1 clic) + Avis Google IA (100/mois) + Posts Réseaux Sociaux Express (30/mois) + Starter Pack Contacts & Avis Google offert + PC & Mobile, 7 jours gratuits, sans engagement.',
       premDesc:
-        'Tout Essentiel (y compris Starter Pack Contacts & Avis Google offert) + SMS automatique sur appel manqué + Campagnes Promo Flash SMS + Veille locale, 7 jours gratuits, sans engagement.',
+        'Tout Essentiel (y compris Gestion de votre Fiche Google et Starter Pack offert) + Audit de complétude & actualités Google Posts + SMS automatique sur appel manqué + Campagnes Promo Flash SMS + Veille locale, 7 jours gratuits, sans engagement.',
     },
     de: {
       ess: 'Paket Basis',
       prem: 'Paket Premium',
       essDesc:
-        'Gratis Starter Pack Kontakte & Google-Bewertungen + Google-Bewertungen KI (100/Mt.) + Social Media Express (30 Posts/Mt.) + PC & Handy, 7 Tage gratis, ohne Vertragsbindung.',
+        'Pflege Ihres Google-Unternehmensprofils (Sonderöffnungszeiten, Feiertage & KI-Beschreibung mit 1 Klick) + Google-Bewertungen KI (100/Mt.) + Social Media Express (30 Posts/Mt.) + Gratis Starter Pack + PC & Handy, 7 Tage gratis, ohne Vertragsbindung.',
       premDesc:
-        'Gesamtes Basis-Paket inkl. Starter Pack + automatische SMS bei verpasstem Anruf + SMS-Flash-Aktionen + lokale Marktbeobachtung, 7 Tage gratis, ohne Vertragsbindung.',
+        'Gesamtes Basis-Paket inkl. Google-Unternehmensprofil & Starter Pack + Vollständigkeits-Audit & Google-Beiträge + automatische SMS bei verpasstem Anruf + SMS-Flash-Aktionen + lokale Marktbeobachtung, 7 Tage gratis, ohne Vertragsbindung.',
     },
     en: {
       ess: 'Essential Plan',
       prem: 'Premium Plan',
       essDesc:
-        'Free Contacts & Google Reviews Starter Pack + AI Google Reviews (100/mo) + Express Social Media (30 posts/mo) + Desktop & Mobile, 7 days free, no commitment.',
+        'Google Business Profile management (special hours, holidays & 1-click AI description) + AI Google Reviews (100/mo) + Express Social Media (30 posts/mo) + Free Contacts & Google Reviews Starter Pack + Desktop & Mobile, 7 days free, no commitment.',
       premDesc:
-        'Full Essential Plan including free Starter Pack + automatic missed-call SMS + 1-click Flash SMS offers + Local Market Watch, 7 days free, no commitment.',
+        'Full Essential Plan including Google Business Profile & free Starter Pack + Completeness audit & Google Posts + automatic missed-call SMS + 1-click Flash SMS offers + Local Market Watch, 7 days free, no commitment.',
     },
   }[lang];
 

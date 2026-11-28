@@ -48,8 +48,18 @@ export function resolveInitialLanguage(): Language {
   return 'fr';
 }
 
-export function LanguageProvider({ children }: { children: React.ReactNode }) {
-  const [language, setLanguageState] = useState<Language>(resolveInitialLanguage);
+export function LanguageProvider({
+  children,
+  initialLanguage,
+}: {
+  children: React.ReactNode;
+  initialLanguage?: Language;
+}) {
+  const [language, setLanguageState] = useState<Language>(() =>
+    initialLanguage && isSupportedLanguage(initialLanguage)
+      ? initialLanguage
+      : resolveInitialLanguage()
+  );
 
   const setLanguage = useCallback((nextLang: Language) => {
     if (!isSupportedLanguage(nextLang)) return;

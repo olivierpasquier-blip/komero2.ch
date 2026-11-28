@@ -2,8 +2,11 @@ import { Layout } from './components/Layout';
 import { PaymentSuccessModal } from './components/PaymentSuccessModal';
 import { RouterProvider, useRouter } from './components/Router';
 import { SeoHead } from './components/SeoHead';
+import type { Language } from './config/siteConfig';
 import { LanguageProvider } from './i18n/LanguageContext';
+import type { RoutePath } from './lib/seo';
 import { ContactPage } from './pages/ContactPage';
+import { GoogleProfilePage } from './pages/GoogleProfilePage';
 import { GoogleReviewsPage } from './pages/GoogleReviewsPage';
 import { HomePage } from './pages/HomePage';
 import { LegalPage } from './pages/LegalPage';
@@ -19,6 +22,8 @@ function KomeroRoutes() {
 
   const renderPage = () => {
     switch (path) {
+      case '/gestion-fiche-google':
+        return <GoogleProfilePage />;
       case '/avis-google-ia':
         return <GoogleReviewsPage />;
       case '/reseaux-sociaux':
@@ -57,10 +62,15 @@ function KomeroRoutes() {
   );
 }
 
-export default function App() {
+export interface AppProps {
+  initialPath?: RoutePath;
+  initialLanguage?: Language;
+}
+
+export default function App({ initialPath, initialLanguage }: AppProps) {
   return (
-    <LanguageProvider>
-      <RouterProvider>
+    <LanguageProvider initialLanguage={initialLanguage}>
+      <RouterProvider initialPath={initialPath}>
         <KomeroRoutes />
       </RouterProvider>
     </LanguageProvider>

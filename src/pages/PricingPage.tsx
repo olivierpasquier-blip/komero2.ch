@@ -7,10 +7,15 @@ import {
   Gift,
   Lock,
   MessageSquare,
+  Minus,
   ShieldCheck,
   Sparkles,
 } from 'lucide-react';
-import { getPricingFaq, getPricingPlans } from '../data/komeroContent';
+import {
+  getPricingComparisonRows,
+  getPricingFaq,
+  getPricingPlans,
+} from '../data/komeroContent';
 import { useLanguage } from '../i18n/LanguageContext';
 import { TRANSLATIONS } from '../i18n/translations';
 import { Link } from '../components/Router';
@@ -19,6 +24,7 @@ export function PricingPage() {
   const { language } = useLanguage();
   const copy = TRANSLATIONS[language].pricing;
   const pricingPlans = getPricingPlans(language);
+  const comparisonRows = getPricingComparisonRows(language);
   const pricingFaq = getPricingFaq(language);
 
   const [cgvAccepted, setCgvAccepted] = useState(false);
@@ -168,15 +174,27 @@ export function PricingPage() {
                   </div>
 
                   <ul className="space-y-3.5 text-sm sm:text-base text-slate-700">
-                    {plan.features.map((feat) => (
-                      <li key={feat} className="flex items-start gap-3">
-                        <Check
-                          className="w-5 h-5 text-[#10B981] shrink-0 mt-0.5"
-                          aria-hidden="true"
-                        />
-                        <span>{feat}</span>
-                      </li>
-                    ))}
+                    {plan.features.map((feat, idx) => {
+                      const targetPath = plan.featureLinks?.[idx];
+                      return (
+                        <li key={feat} className="flex items-start gap-3">
+                          <Check
+                            className="w-5 h-5 text-[#10B981] shrink-0 mt-0.5"
+                            aria-hidden="true"
+                          />
+                          {targetPath ? (
+                            <Link
+                              to={targetPath}
+                              className="text-slate-700 hover:text-[#2563EB] underline decoration-slate-300 hover:decoration-[#2563EB] underline-offset-4 transition-colors"
+                            >
+                              {feat}
+                            </Link>
+                          ) : (
+                            <span>{feat}</span>
+                          )}
+                        </li>
+                      );
+                    })}
                   </ul>
                 </div>
 
@@ -219,6 +237,105 @@ export function PricingPage() {
               <span>{copy.reassuranceStripe}</span>
             </p>
             <p className="text-xs text-slate-500">{copy.vatNote}</p>
+          </div>
+
+          {/* TABLEAU COMPARATIF LIGNE PAR LIGNE */}
+          <div className="max-w-5xl mx-auto pt-4 space-y-5">
+            <div className="text-center space-y-1.5">
+              <p className="text-xs sm:text-sm font-semibold text-[#2563EB]">
+                {copy.comparisonKicker}
+              </p>
+              <h2 className="text-xl sm:text-2xl font-extrabold tracking-tight text-[#1E293B]">
+                {copy.comparisonH2}
+              </h2>
+            </div>
+
+            <div className="rounded-2xl border border-slate-200 bg-white overflow-x-auto shadow-[0_12px_32px_-24px_rgba(30,41,59,0.2)]">
+              <table className="w-full text-left border-collapse min-w-[540px]">
+                <thead>
+                  <tr className="border-b border-slate-200 bg-[#F8FAFC]">
+                    <th
+                      scope="col"
+                      className="py-4 px-5 text-xs sm:text-sm font-bold text-[#1E293B]"
+                    >
+                      {copy.comparisonFeatureCol}
+                    </th>
+                    <th
+                      scope="col"
+                      className="py-4 px-4 text-center text-xs sm:text-sm font-bold text-[#1E293B] whitespace-nowrap tabular-nums"
+                    >
+                      {copy.comparisonEssentielCol}
+                    </th>
+                    <th
+                      scope="col"
+                      className="py-4 px-4 text-center text-xs sm:text-sm font-bold text-[#2563EB] bg-blue-50/50 whitespace-nowrap tabular-nums"
+                    >
+                      {copy.comparisonPremiumCol}
+                    </th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-slate-200/80 text-xs sm:text-sm">
+                  {comparisonRows.map((row) => (
+                    <tr key={row.id} className="hover:bg-slate-50/70 transition-colors">
+                      <th scope="row" className="py-3.5 px-5 font-medium text-[#1E293B]">
+                        {row.path ? (
+                          <Link
+                            to={row.path}
+                            className="hover:text-[#2563EB] underline decoration-slate-300 hover:decoration-[#2563EB] underline-offset-4 transition-colors"
+                          >
+                            {row.label}
+                          </Link>
+                        ) : (
+                          row.label
+                        )}
+                      </th>
+                      <td className="py-3.5 px-4 text-center">
+                        {typeof row.essentiel === 'string' ? (
+                          <span className="inline-flex items-center rounded-md bg-emerald-50 border border-emerald-200 px-2 py-0.5 text-xs font-bold text-[#047857] whitespace-nowrap">
+                            {row.essentiel}
+                          </span>
+                        ) : row.essentiel ? (
+                          <span className="inline-flex items-center justify-center">
+                            <Check
+                              className="w-5 h-5 text-[#10B981]"
+                              aria-label={copy.comparisonIncluded}
+                            />
+                          </span>
+                        ) : (
+                          <span className="inline-flex items-center justify-center">
+                            <Minus
+                              className="w-4 h-4 text-slate-300"
+                              aria-label={copy.comparisonNotIncluded}
+                            />
+                          </span>
+                        )}
+                      </td>
+                      <td className="py-3.5 px-4 text-center bg-blue-50/30">
+                        {typeof row.premium === 'string' ? (
+                          <span className="inline-flex items-center rounded-md bg-emerald-50 border border-emerald-200 px-2 py-0.5 text-xs font-bold text-[#047857] whitespace-nowrap">
+                            {row.premium}
+                          </span>
+                        ) : row.premium ? (
+                          <span className="inline-flex items-center justify-center">
+                            <Check
+                              className="w-5 h-5 text-[#10B981]"
+                              aria-label={copy.comparisonIncluded}
+                            />
+                          </span>
+                        ) : (
+                          <span className="inline-flex items-center justify-center">
+                            <Minus
+                              className="w-4 h-4 text-slate-300"
+                              aria-label={copy.comparisonNotIncluded}
+                            />
+                          </span>
+                        )}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
       </section>

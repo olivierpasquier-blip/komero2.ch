@@ -9,6 +9,7 @@ import {
   PRICING_FAQ,
   PRICING_PLANS,
   STRIPE_LINKS,
+  getPricingComparisonRows,
   getPricingFaq,
   getPricingPlans,
 } from '../data/komeroContent';
@@ -103,6 +104,53 @@ test('GTM container ID, Swiss CHF Stripe links, pricing plans, and contact coord
         item.answer.includes('contact@komero.ch') && !item.answer.includes('info@komero.ch')
     )
   );
+
+  // Verify Google Business Profile inclusion across FR, DE, EN plans, comparison rows, and FAQ
+  assert.ok(
+    essentielFr?.features.includes(
+      'Gestion de votre Fiche Google : horaires exceptionnels, jours fériés et description IA en 1 clic'
+    )
+  );
+  assert.equal(essentielFr?.featureLinks?.[0], '/gestion-fiche-google');
+  assert.ok(
+    premiumFr?.features.includes(
+      'Audit de complétude & actualités Google Posts publiés avec vos réseaux'
+    )
+  );
+  assert.equal(premiumFr?.featureLinks?.[1], '/gestion-fiche-google');
+
+  assert.ok(
+    plansDe[0].features.includes(
+      'Pflege Ihres Google-Unternehmensprofils: Sonderöffnungszeiten, Feiertage & KI-Beschreibung mit 1 Klick'
+    )
+  );
+  assert.ok(
+    plansDe[1].features.includes(
+      'Vollständigkeits-Audit & Google-Beiträge parallel zu Social Media'
+    )
+  );
+
+  assert.ok(
+    plansEn[0].features.includes(
+      'Google Business Profile management: special hours, holidays & 1-click AI description'
+    )
+  );
+  assert.ok(
+    plansEn[1].features.includes(
+      'Completeness audit & Google Posts published alongside social media'
+    )
+  );
+
+  for (const lang of ['fr', 'de', 'en'] as const) {
+    const rows = getPricingComparisonRows(lang);
+    assert.ok(
+      rows.some((r) => r.id === 'gbp-core' && r.path === '/gestion-fiche-google' && r.essentiel === true && r.premium === true)
+    );
+    assert.ok(
+      rows.some((r) => r.id === 'gbp-audit' && r.path === '/gestion-fiche-google' && r.essentiel === false && r.premium === true)
+    );
+    assert.ok(getPricingFaq(lang).some((item) => item.id === 'gestion-fiche-google'));
+  }
 });
 
 test('trackPageView pushes page_view events to dataLayer on route change and deduplicates identical consecutive calls', () => {
