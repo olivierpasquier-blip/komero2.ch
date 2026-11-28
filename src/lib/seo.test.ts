@@ -33,6 +33,8 @@ import {
   buildLegalContent,
 } from '../data/legalContent';
 import { ASSETS, getAdjacentFeatures } from '../data/komeroContent';
+import { TRANSLATIONS } from '../i18n/translations';
+import { MOCKUP_TRANSLATIONS } from '../i18n/mockupTranslations';
 
 test('all 14 routes across FR, DE, and EN have SEO titles < 60 chars, descriptions < 155 chars, and clean /assets/ OG images', () => {
   const routes = Object.keys(PAGE_SEO) as RoutePath[];
@@ -304,4 +306,55 @@ test('SSG prerendering generates unique head SEO, hreflang, CHF JSON-LD, FAQPage
   assert.equal(gbpHead.htmlLang, 'de-CH');
   assert.ok(gbpHead.headMarkup.includes('https://www.komero.ch/gestion-fiche-google'));
   assert.ok(gbpHead.headMarkup.includes('"priceCurrency":"CHF"'));
+});
+
+test('all FR/DE/EN translations and mockups exclude beta/pilot mentions and Jean D., and use Camille R., Lukas M., Elena V. with discreet preview labels', () => {
+  const forbiddenPatterns = [
+    /pilote\s+suisse/i,
+    /commerçant\s+pilote/i,
+    /pilot-geschäft/i,
+    /pilot\s+schweiz/i,
+    /pilotbetrieb/i,
+    /pilot\s+shop/i,
+    /pilot\s+merchant/i,
+    /switzerland\s+pilot/i,
+    /bêta-?test/i,
+    /beta\s+test/i,
+    /jean\s+d\./i,
+  ];
+
+  const serializedTranslations = JSON.stringify(TRANSLATIONS);
+  const serializedMockups = JSON.stringify(MOCKUP_TRANSLATIONS);
+
+  for (const pattern of forbiddenPatterns) {
+    assert.ok(
+      !pattern.test(serializedTranslations),
+      `Forbidden wording matched ${pattern} in TRANSLATIONS`
+    );
+    assert.ok(
+      !pattern.test(serializedMockups),
+      `Forbidden wording matched ${pattern} in MOCKUP_TRANSLATIONS`
+    );
+  }
+
+  assert.ok(TRANSLATIONS.fr.home.fieldCasesKicker.includes('Exemples d’usage en boutique'));
+  assert.ok(TRANSLATIONS.de.home.fieldCasesKicker.includes('Beispiele aus dem Alltag'));
+  assert.ok(TRANSLATIONS.en.home.fieldCasesKicker.includes('Real-world shop examples'));
+
+  assert.equal(TRANSLATIONS.fr.deviceFrames.pcCaptionTag, 'Aperçu de l’interface');
+  assert.equal(TRANSLATIONS.de.deviceFrames.pcCaptionTag, 'Vorschau');
+  assert.equal(TRANSLATIONS.en.deviceFrames.pcCaptionTag, 'Interface preview');
+
+  assert.equal(MOCKUP_TRANSLATIONS.fr.hero.previewBadge, 'Aperçu de l’interface');
+  assert.equal(MOCKUP_TRANSLATIONS.de.hero.previewBadge, 'Vorschau');
+  assert.equal(MOCKUP_TRANSLATIONS.en.hero.previewBadge, 'Interface preview');
+
+  for (const lang of SUPPORTED_LANGUAGES) {
+    const scenarios = MOCKUP_TRANSLATIONS[lang].googleReviews.scenarios;
+    assert.deepEqual(
+      scenarios.map((s) => s.author),
+      ['Camille R.', 'Lukas M.', 'Elena V.']
+    );
+    assert.ok(scenarios.every((s) => s.rating === 5));
+  }
 });

@@ -120,8 +120,9 @@ export interface SiteTranslations {
       routine: string;
       resultTag: string;
     }[];
-    pilotPrompt: string;
-    pilotCta: string;
+    readyPrompt: string;
+    readyTrialCta: string;
+    readyDemoCta: string;
     featuresKicker: string;
     featuresH2: string;
     featuresPricingLink: string;
@@ -482,11 +483,11 @@ export const TRANSLATIONS: Record<Language, SiteTranslations> = {
       starterVisualWheelSub: 'Tournez en 15 secondes',
       starterVisualGoogleSub: 'Avis client + contact enregistrés',
       starterVisualCaption: 'Prêt à poser sur votre comptoir dès le 1er jour',
-      fieldCasesKicker: 'Retours terrain · Commerces indépendants en Suisse',
-      fieldCasesH2: 'Pensé avec et pour les commerçants de proximité',
+      fieldCasesKicker: 'Exemples d’usage en boutique · Suisse',
+      fieldCasesH2: 'Une solution clé en main pensée pour les commerçants de proximité',
       fieldCasesSubtitle:
-        'Trois situations concrètes résolues en 2 minutes par jour chez des commerçants et artisans pilotes en Suisse.',
-      fieldCasesBadge: 'Cas terrain • Pilote Suisse',
+        'Trois situations concrètes résolues en 2 minutes par jour, disponibles immédiatement dès votre inscription en Suisse.',
+      fieldCasesBadge: 'Exemple d’usage en boutique',
       fieldCases: [
         {
           id: 'bakery-ge',
@@ -516,9 +517,10 @@ export const TRANSLATIONS: Record<Language, SiteTranslations> = {
           resultTag: 'IG + FB + Google en 15 s',
         },
       ],
-      pilotPrompt:
-        'Vous souhaitez devenir commerçant pilote en Suisse et tester Komero avec un accompagnement personnalisé ?',
-      pilotCta: 'Devenir commerçant pilote',
+      readyPrompt:
+        'Prêt à lancer Komero dans votre boutique ? Solution clé en main disponible immédiatement, sans engagement.',
+      readyTrialCta: 'Essai gratuit 7 jours',
+      readyDemoCta: 'Démo de 5 min',
       featuresKicker: 'Les 6 leviers Komero · PC & Mobile PWA',
       featuresH2: '6 outils IA pour attirer, répondre et fidéliser dans votre quartier',
       featuresPricingLink: 'Voir les tarifs en CHF',
@@ -1038,7 +1040,7 @@ export const TRANSLATIONS: Record<Language, SiteTranslations> = {
     },
     deviceFrames: {
       pcLabel: 'PC',
-      pcCaptionTag: 'Interface PC Komero',
+      pcCaptionTag: 'Aperçu de l’interface',
     },
   },
 
@@ -1203,11 +1205,11 @@ export const TRANSLATIONS: Record<Language, SiteTranslations> = {
       starterVisualWheelSub: 'In 15 Sekunden drehen',
       starterVisualGoogleSub: 'Bewertung + Kontakt gespeichert',
       starterVisualCaption: 'Ab dem 1. Tag bereit für Ihre Ladentheke',
-      fieldCasesKicker: 'Praxisfälle · Unabhängige Geschäfte in der Schweiz',
-      fieldCasesH2: 'Entwickelt mit und für lokale Geschäfte',
+      fieldCasesKicker: 'Beispiele aus dem Alltag · Schweiz',
+      fieldCasesH2: 'Eine schlüsselfertige Lösung für lokale Geschäfte',
       fieldCasesSubtitle:
-        'Drei konkrete Alltagssituationen, in 2 Minuten pro Tag gelöst bei Schweizer Pilot-Geschäften.',
-      fieldCasesBadge: 'Praxisfall • Pilot Schweiz',
+        'Drei konkrete Alltagssituationen, in 2 Minuten pro Tag gelöst — ab sofort und direkt einsatzbereit in der Schweiz.',
+      fieldCasesBadge: 'Beispiel aus dem Alltag',
       fieldCases: [
         {
           id: 'bakery-ge',
@@ -1237,9 +1239,10 @@ export const TRANSLATIONS: Record<Language, SiteTranslations> = {
           resultTag: 'IG + FB + Google in 15 Sek.',
         },
       ],
-      pilotPrompt:
-        'Möchten Sie Pilot-Geschäft in der Schweiz werden und Komero mit persönlicher Begleitung testen?',
-      pilotCta: 'Pilot-Geschäft werden',
+      readyPrompt:
+        'Bereit, Komero in Ihrem Geschäft einzusetzen? Sofort einsatzbereit, ohne Vertragsbindung.',
+      readyTrialCta: '7 Tage gratis testen',
+      readyDemoCta: '5-Min.-Demo buchen',
       featuresKicker: 'Die 6 Komero-Hebel · PC & Smartphone PWA',
       featuresH2: '6 KI-Tools für mehr Sichtbarkeit, Antworten und Stammkunden im Quartier',
       featuresPricingLink: 'Alle Preise in CHF ansehen',
@@ -1757,7 +1760,7 @@ export const TRANSLATIONS: Record<Language, SiteTranslations> = {
     },
     deviceFrames: {
       pcLabel: 'PC',
-      pcCaptionTag: 'Komero PC-Oberfläche',
+      pcCaptionTag: 'Vorschau',
     },
   },
 
@@ -1922,11 +1925,11 @@ export const TRANSLATIONS: Record<Language, SiteTranslations> = {
       starterVisualWheelSub: 'Spin in 15 seconds',
       starterVisualGoogleSub: 'Review + contact saved',
       starterVisualCaption: 'Ready for your shop counter from day one',
-      fieldCasesKicker: 'Field results · Independent shops across Switzerland',
-      fieldCasesH2: 'Built with and for local shopkeepers',
+      fieldCasesKicker: 'Real-world shop examples · Switzerland',
+      fieldCasesH2: 'A turnkey solution built for local shopkeepers',
       fieldCasesSubtitle:
-        'Three real neighborhood workflows solved in 2 minutes a day with Swiss pilot merchants.',
-      fieldCasesBadge: 'Field case • Switzerland Pilot',
+        'Three concrete everyday workflows solved in 2 minutes a day — ready to use immediately across Switzerland.',
+      fieldCasesBadge: 'Real-world shop example',
       fieldCases: [
         {
           id: 'bakery-ge',
@@ -1956,9 +1959,10 @@ export const TRANSLATIONS: Record<Language, SiteTranslations> = {
           resultTag: 'IG + FB + Google in 15 sec',
         },
       ],
-      pilotPrompt:
-        'Want to become a Swiss pilot shopkeeper and test Komero with personal onboarding?',
-      pilotCta: 'Join as a pilot shop',
+      readyPrompt:
+        'Ready to launch Komero in your shop? Available immediately, with no commitment.',
+      readyTrialCta: 'Start 7-day free trial',
+      readyDemoCta: 'Book a 5-min demo',
       featuresKicker: 'The 6 Komero levers · Desktop & Mobile PWA',
       featuresH2: '6 AI tools to attract, reply, and retain customers in your neighborhood',
       featuresPricingLink: 'View CHF pricing',
@@ -2474,7 +2478,7 @@ export const TRANSLATIONS: Record<Language, SiteTranslations> = {
     },
     deviceFrames: {
       pcLabel: 'PC',
-      pcCaptionTag: 'Komero Desktop Interface',
+      pcCaptionTag: 'Interface preview',
     },
   },
 };

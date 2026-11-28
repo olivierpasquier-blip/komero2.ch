@@ -22,18 +22,25 @@ import { ArtisanBoutiqueCounterSvg } from './BoutiqueVectorScenes';
 /* -------------------------------------------------------------------------- */
 /* 1. /avis-google-ia — PC Browser ("Aperçu Komero - Réponse IA") + Mobile Maps*/
 /* -------------------------------------------------------------------------- */
+interface HeroReviewSample {
+  id: 'camille' | 'lukas' | 'elena';
+  author: string;
+  initials: string;
+  meta: string;
+  quote: string;
+  defaultReply: string;
+  altReply: string;
+}
+
 const REVIEWS_HERO_COPY: Record<
   Language,
   {
     browserTitle: string;
+    previewLabel: string;
     headerBrand: string;
     headerStat: string;
-    reviewAuthor: string;
-    reviewMeta: string;
-    reviewQuote: string;
+    reviewSelectorAria: string;
     aiLabel: string;
-    defaultReply: string;
-    altReply: string;
     validateBtn: string;
     publishedBtn: string;
     altToneBtn: string;
@@ -43,83 +50,183 @@ const REVIEWS_HERO_COPY: Record<
     ownerReplyLabel: string;
     pendingBadge: string;
     publishedBadge: string;
+    reviews: HeroReviewSample[];
   }
 > = {
   fr: {
-    browserTitle: 'Aperçu Komero - Réponse IA',
+    browserTitle: 'app.komero.ch/avis-google',
+    previewLabel: 'Aperçu de l’interface',
     headerBrand: 'Komero · Avis Google IA',
     headerStat: '98% répondus',
-    reviewAuthor: 'Jean D.',
-    reviewMeta: 'Il y a 12 min · Google',
-    reviewQuote: "« Super accueil et d'excellentes viennoiseries ! »",
+    reviewSelectorAria: 'Choisir un avis client exemple',
     aiLabel: "Réponse préparée par l'IA",
-    defaultReply:
-      "Merci beaucoup Jean ! Toute l'équipe de La Boulangerie du Soleil est ravie que nos viennoiseries vous aient plu. À très vite au comptoir !",
-    altReply:
-      "Un grand merci Jean pour vos 5 étoiles ! Nos croissants chauds vous attendent dès 6h30 demain matin à La Boulangerie du Soleil.",
     validateBtn: 'Valider et publier',
     publishedBtn: 'Publiée sur Google',
     altToneBtn: 'Autre ton',
-    shopName: 'La Boulangerie du Soleil',
+    shopName: 'Boulangerie du Lac',
     recommended: 'Recommandé',
     mapsCategory: 'Boulangerie artisanale · Ouvert',
     ownerReplyLabel: 'Réponse Komero publiée',
     pendingBadge: 'À valider',
     publishedBadge: 'En ligne',
+    reviews: [
+      {
+        id: 'camille',
+        author: 'Camille R.',
+        initials: 'CR',
+        meta: 'Il y a 12 min · Google',
+        quote: '« Super accueil et une tresse au beurre maison incroyable ! »',
+        defaultReply:
+          'Merci beaucoup Camille ! Toute l’équipe de la Boulangerie du Lac est ravie que notre tresse au beurre vous ait plu. À très vite au comptoir !',
+        altReply:
+          'Un grand merci Camille pour vos 5 étoiles ! Nos fournées chaudes vous attendent dès 6h30 demain matin à la Boulangerie du Lac.',
+      },
+      {
+        id: 'lukas',
+        author: 'Lukas M.',
+        initials: 'LM',
+        meta: 'Il y a 1 h · Google',
+        quote: '« Pain au levain toujours frais et service rapide même à midi. »',
+        defaultReply:
+          'Merci Lukas pour ce superbe retour ! Nous mettons tout notre soin dans notre pain au levain naturel. Au plaisir de vous revoir bientôt !',
+        altReply:
+          'Merci infiniment Lukas pour vos 5 étoiles ! Toute l’équipe vous remercie pour votre fidélité au quartier.',
+      },
+      {
+        id: 'elena',
+        author: 'Elena V.',
+        initials: 'EV',
+        meta: 'Hier · Google',
+        quote: '« Meilleures tartelettes aux fruits du quartier, accueil au top ! »',
+        defaultReply:
+          'Un immense merci Elena ! Nos pâtissiers préparent chaque matin ces tartelettes avec des fruits de saison. À très bientôt en boutique !',
+        altReply:
+          'Merci beaucoup Elena pour cette belle note ! Nous sommes ravis de régaler votre pause gourmande chaque semaine.',
+      },
+    ],
   },
   de: {
-    browserTitle: 'Komero Vorschau - KI-Antwort',
+    browserTitle: 'app.komero.ch/bewertungen',
+    previewLabel: 'Vorschau',
     headerBrand: 'Komero · Google-Bewertungen KI',
     headerStat: '98% beantwortet',
-    reviewAuthor: 'Jean D.',
-    reviewMeta: 'Vor 12 Min. · Google',
-    reviewQuote: '« Super Empfang und hervorragendes Gebäck! »',
+    reviewSelectorAria: 'Beispielbewertung auswählen',
     aiLabel: 'Von der KI vorbereitete Antwort',
-    defaultReply:
-      'Vielen Dank, Jean! Das gesamte Team von La Boulangerie du Soleil freut sich sehr über Ihr Lob. Bis bald an der Theke!',
-    altReply:
-      'Herzlichen Dank für Ihre 5 Sterne, Jean! Unsere warmen Gipfeli erwarten Sie morgen ab 6:30 Uhr wieder frisch aus dem Ofen.',
     validateBtn: 'Bestätigen & senden',
     publishedBtn: 'Auf Google live',
     altToneBtn: 'Anderer Ton',
-    shopName: 'La Boulangerie du Soleil',
+    shopName: 'Bäckerei Sonnenschein',
     recommended: 'Empfohlen',
     mapsCategory: 'Handwerksbäckerei · Geöffnet',
     ownerReplyLabel: 'Komero-Antwort live',
     pendingBadge: 'Bereit',
     publishedBadge: 'Live',
+    reviews: [
+      {
+        id: 'camille',
+        author: 'Camille R.',
+        initials: 'CR',
+        meta: 'Vor 12 Min. · Google',
+        quote: '« Super Empfang und ein hervorragender Butterzopf! »',
+        defaultReply:
+          'Herzlichen Dank, Camille! Das ganze Team der Bäckerei Sonnenschein freut sich sehr über Ihr Lob zu unserem Butterzopf. Bis bald an der Theke!',
+        altReply:
+          'Vielen Dank für Ihre 5 Sterne, Camille! Unsere ofenfrischen Zöpfe warten morgen ab 6:30 Uhr wieder auf Sie.',
+      },
+      {
+        id: 'lukas',
+        author: 'Lukas M.',
+        initials: 'LM',
+        meta: 'Vor 1 Std. · Google',
+        quote: '« Knuspriges Sauerteigbrot und selbst am Mittag super schnell bedient. »',
+        defaultReply:
+          'Vielen Dank, Lukas, für die tolle Rückmeldung! Unser Natur-Sauerteigbrot wird jeden Morgen frisch gebacken. Bis zum nächsten Besuch!',
+        altReply:
+          'Danke für Ihre 5 Sterne, Lukas! Wir freuen uns, Sie bald wieder im Quartier begrüssen zu dürfen.',
+      },
+      {
+        id: 'elena',
+        author: 'Elena V.',
+        initials: 'EV',
+        meta: 'Gestern · Google',
+        quote: '« Beste Früchtetörtchen im Quartier und immer ein Lächeln! »',
+        defaultReply:
+          'Herzlichen Dank, Elena! Unsere Konditorei verwendet täglich frische Saisonfrüchte. Schön, dass es Ihnen so gut schmeckt!',
+        altReply:
+          'Vielen Dank, Elena, für die wunderbare Bewertung! Bis ganz bald an unserer Theke.',
+      },
+    ],
   },
   en: {
-    browserTitle: 'Komero Preview - AI Reply',
+    browserTitle: 'app.komero.ch/google-reviews',
+    previewLabel: 'Interface preview',
     headerBrand: 'Komero · Google Reviews AI',
     headerStat: '98% replied',
-    reviewAuthor: 'Jean D.',
-    reviewMeta: '12 min ago · Google',
-    reviewQuote: '“Warm welcome and amazing pastries!”',
+    reviewSelectorAria: 'Choose a sample customer review',
     aiLabel: 'AI-prepared reply',
-    defaultReply:
-      'Thank you so much Jean! The whole team at La Boulangerie du Soleil is delighted you loved our pastries. See you again soon!',
-    altReply:
-      'Huge thanks for the 5 stars, Jean! Fresh warm croissants await you tomorrow morning from 6:30 AM at La Boulangerie du Soleil.',
     validateBtn: 'Approve & publish',
     publishedBtn: 'Published on Google',
     altToneBtn: 'Switch tone',
-    shopName: 'La Boulangerie du Soleil',
+    shopName: 'Lakeview Bakery',
     recommended: 'Recommended',
     mapsCategory: 'Artisan Bakery · Open now',
     ownerReplyLabel: 'Published Komero reply',
     pendingBadge: 'Pending',
     publishedBadge: 'Live',
+    reviews: [
+      {
+        id: 'camille',
+        author: 'Camille R.',
+        initials: 'CR',
+        meta: '12 min ago · Google',
+        quote: '“Warm welcome and amazing homemade butter brioche!”',
+        defaultReply:
+          'Thank you so much, Camille! The whole team at Lakeview Bakery is delighted you loved our homemade butter brioche. See you again soon!',
+        altReply:
+          'Huge thanks for the 5 stars, Camille! Fresh warm loaves await you tomorrow morning from 6:30 AM at Lakeview Bakery.',
+      },
+      {
+        id: 'lukas',
+        author: 'Lukas M.',
+        initials: 'LM',
+        meta: '1 hr ago · Google',
+        quote: '“Fresh sourdough every day and quick service even at lunchtime.”',
+        defaultReply:
+          'Thank you, Lukas, for the great feedback! We bake our sourdough fresh every morning and love keeping the counter fast and friendly.',
+        altReply:
+          'Many thanks for the 5 stars, Lukas! We truly appreciate your neighborhood support and look forward to seeing you soon.',
+      },
+      {
+        id: 'elena',
+        author: 'Elena V.',
+        initials: 'EV',
+        meta: 'Yesterday · Google',
+        quote: '“Best fruit tarts in the neighborhood, always greeted with a smile!”',
+        defaultReply:
+          'Thank you so much, Elena! Our pastry team prepares every fruit tart fresh each morning with seasonal produce. See you soon in the shop!',
+        altReply:
+          'Thanks a lot for your kind 5-star review, Elena! Always a pleasure to welcome you at the counter.',
+      },
+    ],
   },
 };
 
 export function GoogleReviewsHeroVisual() {
   const { language } = useLanguage();
   const c = REVIEWS_HERO_COPY[language];
+  const [selectedReviewId, setSelectedReviewId] = useState<'camille' | 'lukas' | 'elena'>('camille');
   const [useAltTone, setUseAltTone] = useState(false);
   const [published, setPublished] = useState(true);
 
-  const activeReply = useAltTone ? c.altReply : c.defaultReply;
+  const currentReview =
+    c.reviews.find((review) => review.id === selectedReviewId) ?? c.reviews[0];
+  const activeReply = useAltTone ? currentReview.altReply : currentReview.defaultReply;
+
+  const handleSelectReview = (id: 'camille' | 'lukas' | 'elena') => {
+    setSelectedReviewId(id);
+    setUseAltTone(false);
+    setPublished(true);
+  };
 
   const handleToneToggle = () => {
     setUseAltTone((prev) => !prev);
@@ -141,6 +248,9 @@ export function GoogleReviewsHeroVisual() {
             <div className="flex-1 min-w-0 bg-white border border-slate-200 rounded-md px-2.5 py-0.5 text-[11px] font-medium text-slate-600 truncate">
               {c.browserTitle}
             </div>
+            <span className="text-[10px] font-medium text-slate-500 whitespace-nowrap shrink-0">
+              {c.previewLabel}
+            </span>
           </div>
 
           {/* Midnight Navy & Emerald Header */}
@@ -158,16 +268,48 @@ export function GoogleReviewsHeroVisual() {
 
           {/* Dashboard Body — padded right on sm+ so overlapping phone never covers text/buttons */}
           <div className="p-4 sm:pr-24 space-y-3">
+            {/* Switch between Camille R., Lukas M., Elena V. */}
+            <div
+              role="tablist"
+              aria-label={c.reviewSelectorAria}
+              className="flex flex-wrap items-center gap-1.5"
+            >
+              {c.reviews.map((review) => {
+                const isSelected = review.id === currentReview.id;
+                return (
+                  <button
+                    key={review.id}
+                    type="button"
+                    role="tab"
+                    aria-selected={isSelected}
+                    onClick={() => handleSelectReview(review.id)}
+                    className={`inline-flex items-center gap-1 px-2 py-1 rounded-md text-[11px] font-semibold transition-colors cursor-pointer ${
+                      isSelected
+                        ? 'bg-[#1E293B] text-white'
+                        : 'bg-slate-100 text-slate-600 hover:text-[#1E293B]'
+                    }`}
+                  >
+                    <span>{review.author}</span>
+                    <span className="text-amber-400" aria-hidden="true">
+                      5★
+                    </span>
+                  </button>
+                );
+              })}
+            </div>
+
             {/* Customer Review Card */}
             <div className="rounded-xl border border-slate-200 bg-[#F8FAFC] p-3 space-y-1.5">
               <div className="flex items-center justify-between gap-2">
                 <div className="flex items-center gap-2 min-w-0">
                   <span className="w-7 h-7 rounded-full bg-[#2563EB] text-white text-xs font-bold flex items-center justify-center shrink-0">
-                    JD
+                    {currentReview.initials}
                   </span>
                   <div className="min-w-0">
-                    <p className="text-xs font-bold text-[#1E293B] truncate">{c.reviewAuthor}</p>
-                    <p className="text-[10px] text-slate-500 truncate">{c.reviewMeta}</p>
+                    <p className="text-xs font-bold text-[#1E293B] truncate">
+                      {currentReview.author}
+                    </p>
+                    <p className="text-[10px] text-slate-500 truncate">{currentReview.meta}</p>
                   </div>
                 </div>
                 <div className="flex items-center gap-0.5 text-amber-400 shrink-0" aria-label="5/5">
@@ -176,7 +318,9 @@ export function GoogleReviewsHeroVisual() {
                   ))}
                 </div>
               </div>
-              <p className="text-xs text-[#1E293B] font-medium leading-snug">{c.reviewQuote}</p>
+              <p className="text-xs text-[#1E293B] font-medium leading-snug">
+                {currentReview.quote}
+              </p>
             </div>
 
             {/* AI Prepared Reply Box */}
@@ -271,7 +415,9 @@ export function GoogleReviewsHeroVisual() {
                 {/* Published Komero reply preview */}
                 <div className="rounded-xl border border-slate-200 bg-[#F8FAFC] p-2 space-y-1">
                   <div className="flex items-center justify-between gap-1">
-                    <span className="text-[10px] font-bold text-[#1E293B]">{c.reviewAuthor}</span>
+                    <span className="text-[10px] font-bold text-[#1E293B]">
+                      {currentReview.author}
+                    </span>
                     <span
                       className={`text-[9px] font-bold px-1.5 py-0.5 rounded ${
                         published
@@ -282,7 +428,7 @@ export function GoogleReviewsHeroVisual() {
                       {published ? c.publishedBadge : c.pendingBadge}
                     </span>
                   </div>
-                  <p className="text-[9px] text-slate-600 leading-snug">{c.reviewQuote}</p>
+                  <p className="text-[9px] text-slate-600 leading-snug">{currentReview.quote}</p>
                   <div className="pt-1 border-t border-slate-200 space-y-0.5">
                     <p className="text-[9px] font-bold text-[#047857] flex items-center gap-1">
                       <CheckCircle2 className="w-2.5 h-2.5 shrink-0" aria-hidden="true" />

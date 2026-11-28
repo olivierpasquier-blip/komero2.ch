@@ -333,8 +333,8 @@ export function HeroCompositeMockup() {
               <span className="px-3 py-0.5 rounded bg-white border border-slate-200 text-[11px] font-medium text-slate-500 truncate">
                 {copy.pcUrl}
               </span>
-              <span className="text-[11px] font-medium text-[#047857] whitespace-nowrap shrink-0">
-                {frameCopy.pcLabel}
+              <span className="text-[11px] font-medium text-slate-500 whitespace-nowrap shrink-0">
+                {copy.previewBadge}
               </span>
             </div>
             <KomeroDesktopDashboardScreen copy={copy} />

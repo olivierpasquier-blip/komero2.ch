@@ -8,8 +8,8 @@ export function GoogleReviewsMockup() {
   const { language } = useLanguage();
   const copy = MOCKUP_TRANSLATIONS[language].googleReviews;
 
-  const [selectedId, setSelectedId] = useState<'positif' | 'negatif'>('positif');
-  const [publishedIds, setPublishedIds] = useState<Record<string, boolean>>({ positif: true });
+  const [selectedId, setSelectedId] = useState<'camille' | 'lukas' | 'elena'>('camille');
+  const [publishedIds, setPublishedIds] = useState<Record<string, boolean>>({ camille: true });
 
   const scenario = copy.scenarios.find((s) => s.id === selectedId) ?? copy.scenarios[0];
   const isPublished = Boolean(publishedIds[scenario.id]);

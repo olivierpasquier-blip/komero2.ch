@@ -307,7 +307,7 @@ export function HomePage() {
         </div>
       </section>
 
-      {/* 3B. PREUVE SOCIALE — CAS TERRAIN & PILOTE SUISSE */}
+      {/* 3B. PREUVE SOCIALE — EXEMPLES D'USAGE EN BOUTIQUE */}
       <section className="bg-white py-16 lg:py-22 border-b border-slate-200/80">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-2xl space-y-2.5 mb-10 lg:mb-12">
@@ -364,18 +364,27 @@ export function HomePage() {
             ))}
           </div>
 
-          {/* Encart discret programme pilote Suisse */}
-          <div className="mt-8 rounded-2xl border border-slate-200 bg-[#F8FAFC] px-5 py-4 sm:px-6 sm:py-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+          {/* Encart démarrage immédiat : essai gratuit 7 jours ou démo 5 minutes */}
+          <div className="mt-8 rounded-2xl border border-slate-200 bg-[#F8FAFC] px-5 py-4 sm:px-6 sm:py-5 flex flex-col lg:flex-row lg:items-center justify-between gap-4">
             <p className="text-sm font-medium text-[#1E293B] leading-relaxed">
-              {copy.pilotPrompt}
+              {copy.readyPrompt}
             </p>
-            <Link
-              to="/contact"
-              className="inline-flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-xl border border-[#1E293B] bg-white hover:bg-slate-50 text-[#1E293B] text-xs sm:text-sm font-semibold transition-colors whitespace-nowrap shrink-0"
-            >
-              {copy.pilotCta}
-              <ArrowRight className="w-4 h-4 shrink-0" aria-hidden="true" />
-            </Link>
+            <div className="flex flex-wrap items-center gap-2.5 shrink-0">
+              <Link
+                to="/tarifs"
+                className="inline-flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-xl bg-[#2563EB] hover:bg-[#1D4ED8] text-white text-xs sm:text-sm font-semibold transition-colors whitespace-nowrap shrink-0"
+              >
+                {copy.readyTrialCta}
+                <ArrowRight className="w-4 h-4 shrink-0" aria-hidden="true" />
+              </Link>
+              <Link
+                to="/contact"
+                className="inline-flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-xl border border-[#1E293B] bg-white hover:bg-slate-50 text-[#1E293B] text-xs sm:text-sm font-semibold transition-colors whitespace-nowrap shrink-0"
+              >
+                {copy.readyDemoCta}
+                <ArrowRight className="w-4 h-4 shrink-0" aria-hidden="true" />
+              </Link>
+            </div>
           </div>
         </div>
       </section>

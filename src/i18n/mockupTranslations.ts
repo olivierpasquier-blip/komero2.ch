@@ -43,6 +43,7 @@ export interface HeroMockupCopy {
   pcCaption: string;
   mobileSlot: string;
   mobileCaption: string;
+  previewBadge: string;
 }
 
 export interface GoogleReviewsMockupCopy {
@@ -73,7 +74,7 @@ export interface GoogleReviewsMockupCopy {
   pendingTitle: string;
   pendingSub: string;
   scenarios: Array<{
-    id: 'positif' | 'negatif';
+    id: 'camille' | 'lukas' | 'elena';
     tabLabel: string;
     author: string;
     rating: number;
@@ -247,10 +248,10 @@ export const MOCKUP_TRANSLATIONS: Record<Language, MockupTranslations> = {
       mobileBadge: 'Mobile',
       mobileSub: 'Lausanne · Priorités du jour',
       mobileUrgentBadge: '1 appel manqué → SMS envoyé',
-      mobileAlertTitle: 'Sophie M. (11h42)',
+      mobileAlertTitle: 'Lukas M. (11h42)',
       mobileAlertSub: '« Pouvez-vous me garder une tresse pour 18h ? »',
       mobileActionTitle: 'Réponse SMS prête',
-      mobileActionSub: '« Bonjour Sophie, c’est réservé pour 18h ! »',
+      mobileActionSub: '« Bonjour Lukas, c’est réservé pour 18h ! »',
       mobileActionBtn: 'Envoyer en 1 clic',
       mobileQuick1: '2 avis prêts',
       mobileQuick2: '1 post prêt',
@@ -262,6 +263,7 @@ export const MOCKUP_TRANSLATIONS: Record<Language, MockupTranslations> = {
       pcCaption: 'Pilotez tout depuis votre PC au comptoir ou sur votre smartphone',
       mobileSlot: 'Application Mobile Komero — Priorités du jour',
       mobileCaption: 'Inclus sur smartphone iOS & Android sans installation complexe',
+      previewBadge: 'Aperçu de l’interface',
     },
     googleReviews: {
       intro: 'Testez la génération de réponse IA selon le type d’avis reçu :',
@@ -292,30 +294,43 @@ export const MOCKUP_TRANSLATIONS: Record<Language, MockupTranslations> = {
       pendingSub: 'Cliquez sur « Valider et publier en 1 clic » pour voir le rendu en direct.',
       scenarios: [
         {
-          id: 'positif',
-          tabLabel: 'Avis 5 étoiles (Fidélisation + Maps)',
-          author: 'Camille Rochat',
+          id: 'camille',
+          tabLabel: 'Camille R. (5★)',
+          author: 'Camille R.',
           rating: 5,
           dateLabel: 'Il y a 2 heures',
           comment:
-            'Meilleure tresse au beurre de Lausanne ! Les croissants encore tièdes le matin sont un vrai bonheur, accueil toujours souriant.',
-          detectedKeywords: ['tresse au beurre', 'croissants', 'Lausanne'],
+            'Meilleure tresse au beurre de Lausanne ! Accueil toujours souriant et fournées encore tièdes le matin.',
+          detectedKeywords: ['tresse au beurre', 'accueil', 'Lausanne'],
           aiReply:
-            'Merci beaucoup Camille pour ce superbe retour ! Toute l’équipe de la Boulangerie du Lac est ravie que notre tresse au beurre et nos croissants maison vous régalent chaque matin à Lausanne. À très vite au comptoir !',
+            'Merci beaucoup Camille pour ce superbe retour ! Toute l’équipe de la Boulangerie du Lac est ravie que notre tresse au beurre maison vous régale chaque matin à Lausanne. À très vite au comptoir !',
           seoBenefit: 'Mots-clés locaux intégrés : boulangerie artisanale, tresse au beurre, Lausanne',
         },
         {
-          id: 'negatif',
-          tabLabel: 'Avis 2 étoiles (Réponse apaisée)',
-          author: 'Julien M.',
-          rating: 2,
+          id: 'lukas',
+          tabLabel: 'Lukas M. (5★)',
+          author: 'Lukas M.',
+          rating: 5,
           dateLabel: 'Hier',
           comment:
-            'Beaucoup d’attente dimanche matin à 10h30 et il n’y avait plus de tarte aux fraises. Dommage.',
-          detectedKeywords: ['dimanche matin', 'tarte aux fraises', 'attente'],
+            'Pain au levain naturel excellent et service très rapide même pendant la pause de midi. Je recommande sans hésiter.',
+          detectedKeywords: ['pain au levain', 'service rapide', 'pause de midi'],
           aiReply:
-            'Bonjour Julien, merci d’avoir pris le temps de nous écrire. Nous sommes désolés pour l’attente lors du coup de feu du dimanche matin et pour la rupture sur notre tarte aux fraises maison. Pour vous éviter cela, nous pouvons désormais vous la mettre de côté sur simple SMS. Au plaisir de mieux vous accueillir bientôt.',
-          seoBenefit: 'Ton calme, constructif et anonymisation nLPD / RGPD active avant validation',
+            'Un grand merci Lukas pour vos 5 étoiles ! Nos boulangers pétrissent ce pain au levain chaque matin pour vous offrir une croûte parfaite. Au plaisir de vous revoir bientôt !',
+          seoBenefit: 'Mots-clés locaux intégrés : pain au levain naturel, boulangerie de quartier',
+        },
+        {
+          id: 'elena',
+          tabLabel: 'Elena V. (5★)',
+          author: 'Elena V.',
+          rating: 5,
+          dateLabel: 'Il y a 3 jours',
+          comment:
+            'Tartelettes aux fruits de saison délicieuses et équipe adorable. Mon adresse préférée du quartier !',
+          detectedKeywords: ['tartelettes aux fruits', 'fruits de saison', 'quartier'],
+          aiReply:
+            'Merci infiniment Elena pour ce beau message ! Nous sélectionnons des fruits de saison chaque semaine pour nos tartelettes maison. À très bientôt en boutique !',
+          seoBenefit: 'Fidélisation locale & anonymisation nLPD / RGPD active avant validation',
         },
       ],
     },
@@ -556,7 +571,7 @@ export const MOCKUP_TRANSLATIONS: Record<Language, MockupTranslations> = {
       kpiBaseLabel: 'Kundenliste',
       kpiBaseSub: 'SMS-Kontakte',
       prioritiesHeading: 'Heute bereit zur Freigabe',
-      reviewTitle: '5★-Bewertung — Sandra K. (Butterzopf hausgemacht)',
+      reviewTitle: '5★-Bewertung — Lukas M. (Butterzopf hausgemacht)',
       reviewSub: 'Lokale Antwort bereit · revDSG-konform',
       publishBtn: 'Freigeben',
       postTitle: 'Instagram & Facebook — Frische Morgenbackstube',
@@ -565,10 +580,10 @@ export const MOCKUP_TRANSLATIONS: Record<Language, MockupTranslations> = {
       mobileBadge: 'Mobil',
       mobileSub: 'Zürich · Tagesaufgaben',
       mobileUrgentBadge: '1 verpasster Anruf → SMS gesendet',
-      mobileAlertTitle: 'Laura M. (11:42)',
+      mobileAlertTitle: 'Elena V. (11:42)',
       mobileAlertSub: '«Können Sie mir einen Butterzopf auf 18 Uhr zurücklegen?»',
       mobileActionTitle: 'SMS-Antwort bereit',
-      mobileActionSub: '«Grüezi Laura, Ihr Zopf ist auf 18 Uhr reserviert!»',
+      mobileActionSub: '«Grüezi Elena, Ihr Zopf ist auf 18 Uhr reserviert!»',
       mobileActionBtn: 'Mit 1 Klick senden',
       mobileQuick1: '2 Antworten bereit',
       mobileQuick2: '1 Post bereit',
@@ -580,6 +595,7 @@ export const MOCKUP_TRANSLATIONS: Record<Language, MockupTranslations> = {
       pcCaption: 'Steuern Sie alles bequem am PC im Laden oder unterwegs am Smartphone',
       mobileSlot: 'Komero Mobile App — Tagesprioritäten',
       mobileCaption: 'Für iOS & Android inklusive, ohne komplizierte Installation',
+      previewBadge: 'Vorschau',
     },
     googleReviews: {
       intro: 'Testen Sie die KI-Antwort je nach Art der erhaltenen Bewertung:',
@@ -610,30 +626,43 @@ export const MOCKUP_TRANSLATIONS: Record<Language, MockupTranslations> = {
       pendingSub: 'Klicken Sie auf «Mit 1 Klick freigeben» für die Live-Vorschau.',
       scenarios: [
         {
-          id: 'positif',
-          tabLabel: '5-Sterne-Bewertung (Stammkunden + Maps)',
-          author: 'Sandra Keller',
+          id: 'camille',
+          tabLabel: 'Camille R. (5★)',
+          author: 'Camille R.',
           rating: 5,
           dateLabel: 'Vor 2 Stunden',
           comment:
-            'Bester Butterzopf im Quartier! Die ofenwarmen Gipfeli am Morgen sind ein Traum und das Team ist immer super freundlich.',
-          detectedKeywords: ['Butterzopf', 'Gipfeli', 'Quartier'],
+            'Bester Butterzopf im Quartier! Immer ofenwarm am Morgen und das Team ist super herzlich.',
+          detectedKeywords: ['Butterzopf', 'Quartier', 'ofenwarm'],
           aiReply:
-            'Herzlichen Dank Sandra für Ihre tolle Rückmeldung! Das ganze Team der Bäckerei Sonnenschein freut sich sehr, dass Ihnen unser hausgemachter Butterzopf und die ofenwarmen Gipfeli in Zürich so gut schmecken. Bis bald an der Theke!',
-          seoBenefit: 'Lokale Suchbegriffe integriert: Bäckerei, Butterzopf, Gipfeli, Zürich',
+            'Herzlichen Dank, Camille, für Ihre tolle Rückmeldung! Das ganze Team der Bäckerei Sonnenschein freut sich sehr, dass Ihnen unser hausgemachter Butterzopf in Zürich so gut schmeckt. Bis bald an der Theke!',
+          seoBenefit: 'Lokale Suchbegriffe integriert: Handwerksbäckerei, Butterzopf, Zürich',
         },
         {
-          id: 'negatif',
-          tabLabel: '2-Sterne-Bewertung (Ruhige Antwort)',
-          author: 'Stefan R.',
-          rating: 2,
+          id: 'lukas',
+          tabLabel: 'Lukas M. (5★)',
+          author: 'Lukas M.',
+          rating: 5,
           dateLabel: 'Gestern',
           comment:
-            'Am Sonntagmorgen um 10:30 Uhr lange Wartezeit und leider keine Erdbeertorte mehr da. Schade.',
-          detectedKeywords: ['Sonntagmorgen', 'Erdbeertorte', 'Wartezeit'],
+            'Knuspriges Sauerteigbrot und selbst über Mittag sehr schnelle Bedienung. Absolute Empfehlung!',
+          detectedKeywords: ['Sauerteigbrot', 'schnelle Bedienung', 'Mittag'],
           aiReply:
-            'Grüezi Stefan, danke für Ihr offenes Feedback. Es tut uns leid für die Wartezeit während der Sonntagsspitze und dass unsere Erdbeertorte bereits ausverkauft war. Gerne legen wir Ihnen künftig Ihr Wunschgebäck kurz per SMS zurück. Bis zum nächsten Besuch!',
-          seoBenefit: 'Ruhiger, konstruktiver Ton & revDSG-Anonymisierung vor Freigabe aktiv',
+            'Vielen Dank, Lukas, für Ihre 5 Sterne! Wir backen unser Natur-Sauerteigbrot jeden Morgen frisch und freuen uns, Sie bald wieder im Quartier begrüssen zu dürfen.',
+          seoBenefit: 'Lokale Suchbegriffe integriert: Sauerteigbrot, Quartierbäckerei',
+        },
+        {
+          id: 'elena',
+          tabLabel: 'Elena V. (5★)',
+          author: 'Elena V.',
+          rating: 5,
+          dateLabel: 'Vor 3 Tagen',
+          comment:
+            'Wunderbare Früchtetörtchen mit saisonalen Zutaten und immer ein freundliches Wort an der Theke.',
+          detectedKeywords: ['Früchtetörtchen', 'saisonal', 'Theke'],
+          aiReply:
+            'Herzlichen Dank, Elena, für das schöne Kompliment! Unsere Konditorei verwendet täglich frische Saisonfrüchte. Schön, dass Sie so gerne bei uns vorbeischauen!',
+          seoBenefit: 'Kundenbindung & revDSG- / DSGVO-Anonymisierung vor Freigabe aktiv',
         },
       ],
     },
@@ -883,10 +912,10 @@ export const MOCKUP_TRANSLATIONS: Record<Language, MockupTranslations> = {
       mobileBadge: 'Mobile',
       mobileSub: 'Geneva · Today’s priorities',
       mobileUrgentBadge: '1 missed call → SMS sent',
-      mobileAlertTitle: 'Sophie M. (11:42)',
+      mobileAlertTitle: 'Elena V. (11:42)',
       mobileAlertSub: '“Could you hold a butter brioche for 6 pm?”',
       mobileActionTitle: 'SMS reply ready',
-      mobileActionSub: '“Hi Sophie, reserved for 6 pm under your name!”',
+      mobileActionSub: '“Hi Elena, reserved for 6 pm under your name!”',
       mobileActionBtn: 'Send in 1 click',
       mobileQuick1: '2 reviews ready',
       mobileQuick2: '1 post ready',
@@ -898,6 +927,7 @@ export const MOCKUP_TRANSLATIONS: Record<Language, MockupTranslations> = {
       pcCaption: 'Run everything from your counter computer or your smartphone',
       mobileSlot: 'Komero Mobile App — Daily priorities',
       mobileCaption: 'Included on iOS & Android with zero complex setup',
+      previewBadge: 'Interface preview',
     },
     googleReviews: {
       intro: 'Try AI reply generation for different types of Google reviews:',
@@ -928,30 +958,43 @@ export const MOCKUP_TRANSLATIONS: Record<Language, MockupTranslations> = {
       pendingSub: 'Click “Approve & publish in 1 click” to see the live result.',
       scenarios: [
         {
-          id: 'positif',
-          tabLabel: '5-Star Review (Loyalty + Maps)',
-          author: 'Camille Rochat',
+          id: 'camille',
+          tabLabel: 'Camille R. (5★)',
+          author: 'Camille R.',
           rating: 5,
           dateLabel: '2 hours ago',
           comment:
-            'Best butter brioche in Geneva! Warm croissants every morning and always greeted with a smile.',
-          detectedKeywords: ['butter brioche', 'croissants', 'Geneva'],
+            'Best butter brioche in Geneva! Warm loaves every morning and always greeted with a smile.',
+          detectedKeywords: ['butter brioche', 'warm loaves', 'Geneva'],
           aiReply:
-            'Thank you so much Camille for this wonderful review! Our whole team at Lakeview Bakery is thrilled you enjoy our homemade butter brioche and warm croissants in Geneva. See you soon at the counter!',
+            'Thank you so much, Camille, for this wonderful review! Our whole team at Lakeview Bakery is thrilled you enjoy our homemade butter brioche in Geneva. See you soon at the counter!',
           seoBenefit: 'Local keywords woven in: artisan bakery, butter brioche, Geneva',
         },
         {
-          id: 'negatif',
-          tabLabel: '2-Star Review (Calm reply)',
-          author: 'Julian M.',
-          rating: 2,
+          id: 'lukas',
+          tabLabel: 'Lukas M. (5★)',
+          author: 'Lukas M.',
+          rating: 5,
           dateLabel: 'Yesterday',
           comment:
-            'Long wait on Sunday morning at 10:30 am and you were already out of strawberry tarts. A bit disappointing.',
-          detectedKeywords: ['Sunday morning', 'strawberry tarts', 'wait'],
+            'Crisp natural sourdough and super quick counter service even during the lunch rush. Highly recommended!',
+          detectedKeywords: ['sourdough', 'quick service', 'lunch'],
           aiReply:
-            'Hello Julian, thank you for taking the time to share your feedback. We are sorry for the wait during the Sunday rush and for selling out of our homemade strawberry tarts. Next time, feel free to send us a quick SMS and we will happily set one aside for you.',
-          seoBenefit: 'Calm, constructive tone & FADP / GDPR anonymization active',
+            'Many thanks for the 5 stars, Lukas! Our bakers prepare our natural sourdough fresh every morning. We look forward to welcoming you again soon!',
+          seoBenefit: 'Local keywords woven in: natural sourdough, neighborhood bakery',
+        },
+        {
+          id: 'elena',
+          tabLabel: 'Elena V. (5★)',
+          author: 'Elena V.',
+          rating: 5,
+          dateLabel: '3 days ago',
+          comment:
+            'Delicious seasonal fruit tarts and the friendliest staff in the neighborhood. My go-to spot!',
+          detectedKeywords: ['fruit tarts', 'seasonal', 'neighborhood'],
+          aiReply:
+            'Thank you so much, Elena, for your lovely note! Our pastry chefs use fresh seasonal fruit every week. Always a joy to see you in the shop!',
+          seoBenefit: 'Local loyalty & FADP / GDPR anonymization active before publishing',
         },
       ],
     },
